@@ -1,0 +1,31 @@
+{
+  "name": "tatooine",
+  "version": "0.0.1",
+  "description": "Tatooine: A pluggable, simple and powerful web scraper.",
+  "main": "index.js",
+  "author": "Beto Muniz <contato@betomuniz.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js --exec babel-node",
+    "test": "mocha test/**/*.js"
+  },
+  "dependencies": {
+    "async": "2.0.0-rc.6",
+    "cheerio": "0.20.0",
+    "lodash": "4.13.1",
+    "request": "2.72.0"
+  },
+  "devDependencies": {
+    "babel-cli": "6.10.1",
+    "babel-core": "6.10.4",
+    "babel-plugin-transform-regenerator": "6.9.0",
+    "babel-preset-es2015": "6.9.0",
+    "chai": "3.5.0",
+    "dirty-chai": "1.2.2",
+    "eslint": "3.1.0",
+    "eslint-config-airbnb-base": "4.0.2",
+    "eslint-plugin-import": "1.10.3",
+    "mocha": "2.5.3",
+    "nodemon": "1.9.2"
+  }
+}
