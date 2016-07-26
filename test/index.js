@@ -15,26 +15,29 @@ describe('Tatooine', () => {
   describe('Sources', () => {
     it('from a Custom Source should have all required fields', done => {
       const customSrc = sources[0];
-      expect(customSrc.type).to.not.be.null();
-      expect(customSrc.requestOptions.url).to.not.be.null();
+      expect(customSrc.type).not.be.null.and.not.be.undefined.and.not.be.empty();
+      expect(customSrc.requestOptions.url).not.be.null.and.not.be.undefined.and.not.be.empty();
       done();
     });
     it('from a Webpage should have all required fields', done => {
       const webScrapingSrc = sources[1];
-      expect(webScrapingSrc.type).to.not.be.null();
-      expect(webScrapingSrc.requestOptions.url).to.not.be.null();
+      expect(webScrapingSrc.type).to.equal('web-scraping');
+      expect(webScrapingSrc.requestOptions.url).not.be.null.and.not.be.undefined.and.not.be.empty();
+      expect(webScrapingSrc.selectors).not.be.null.and.not.be.undefined.and.not.be.empty();
       done();
     });
     it('from a RSS should have all required fields', done => {
       const rssSrc = sources[2];
-      expect(rssSrc.type).to.not.be.null();
-      expect(rssSrc.requestOptions.url).to.not.be.null();
+      expect(rssSrc.type).to.equal('rss');
+      expect(rssSrc.requestOptions.url).not.be.null.and.not.be.undefined.and.not.be.empty();
+      expect(rssSrc.selectors).not.be.null.and.not.be.undefined.and.not.be.empty();
       done();
     });
     it('from an API should have all required fields', done => {
       const apiSrc = sources[3];
-      expect(apiSrc.type).to.not.be.null();
-      expect(apiSrc.requestOptions.url).to.not.be.null();
+      expect(apiSrc.type).to.equal('api');
+      expect(apiSrc.requestOptions.url).not.be.null.and.not.be.undefined.and.not.be.empty();
+      expect(apiSrc.selectors).not.be.null.and.not.be.undefined.and.not.be.empty();
       done();
     });
   });
