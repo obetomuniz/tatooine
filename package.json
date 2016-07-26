@@ -1,6 +1,6 @@
 {
   "name": "tatooine",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Tatooine: A pluggable, simple and powerful web scraper.",
   "main": "lib/index.js",
   "author": "Beto Muniz <contato@betomuniz.com>",
@@ -10,6 +10,14 @@
     "test": "mocha test/**/*.js",
     "build": "babel src --presets babel-preset-es2015 --out-dir lib",
     "prepublish": "npm run build"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/obetomuniz/tatooine.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/obetomuniz/tatooine/issues",
+    "email" : "contato@betomuniz.com"
   },
   "dependencies": {
     "async": "2.0.0-rc.6",
