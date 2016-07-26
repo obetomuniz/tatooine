@@ -1,6 +1,6 @@
 {
   "name": "tatooine",
-  "version": "0.0.5",
+  "version": "0.0.17",
   "description": "Tatooine: A pluggable, simple and powerful web scraper.",
   "main": "lib/index.js",
   "author": "Beto Muniz <contato@betomuniz.com>",

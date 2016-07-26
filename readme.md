@@ -8,41 +8,14 @@
 $ npm install tatooine --save
 ```
 
-## Boilerplate
+## Simple Usage
 
-```js
-// sources.js
-export default [{
-    type: 'schema',
-    requestOptions: {
-      url: 'https://source.com'
-    },
-    selectors: {
-      ...
-    }
-  },
-...
-];
-```
-
-```js
-// index.js
-import Tatooine from 'tatooine';
-import sources from './sources';
-
-const tatooine = new Tatooine(sources, (response) => {
-  ...
-});
-```
-
-## Usage
-
-Tatooine come to us with some defaults schemas and below you can check how to use they:
+Tatooine came to you with some defaults schemas and below you can check how to use they:
 
 ```js
 // sources/api.default-schema.js
 export default {
-  name: 'JSON Placeholder', // [undefined] If you want, you can add more fields to be returned.
+  name: 'JSON Placeholder', // [undefined] If you want, you can add more fields to be returned inside of the response.
   type: 'api', // [required] It's important use this declaration to enable the default "api" schema.
   urlPrefix: null, // [optional] Add this field to put a url prefix if the results don't have.
   max: 5, // [optional] Add this field to put a limit of fields returned.
@@ -58,7 +31,7 @@ export default {
 ```js
 // sources/rss.default-schema.js
 export default {
-  name: 'Smashing Magazine', // [undefined] If you want, you can add more fields to be returned.
+  name: 'Smashing Magazine', // [undefined] If you want, you can add more fields to be returned inside of the response.
   type: 'rss', // [required] It's important use this declaration to enable the default "rss" schema.
   urlPrefix: null, // [optional] Add this field to put a url prefix if the results don't have.
   max: 5, // [optional] Add this field to put a limit of fields returned.
@@ -75,7 +48,7 @@ export default {
 ```js
 // sources/webscraping.default-schema.js
 export default {
-  name: 'GitHub Trends - JavaScript', // [undefined] If you want, you can add more fields to be returned.
+  name: 'GitHub Trends - JavaScript', // [undefined] If you want, you can add more fields to be returned inside of the response.
   type: 'web-scraping', // [required] It's important use this declaration to enable the default "web-scraping" schema.
   urlPrefix: 'https://github.com', // [optional] Add this field to put a url prefix if the results don't have.
   max: 5, // [optional] Add this field to put a limit of fields returned.
@@ -104,16 +77,19 @@ import Tatooine from 'tatooine';
 import sources from './sources';
 
 const tatooine = new Tatooine(sources, (response) => {
+  // response[0].results; <-- You'll have a new field called "results" inside of your response for each source.
+  // response[1].results; <-- You'll have a new field called "results" inside of your response for each source.
+  // response[2].results; <-- You'll have a new field called "results" inside of your response for each source.
   ...
 });
 ```
 
 ## Custom Usage
 
-Beyond the defaults schemas, Tatooine allows you plug and play custom schemas, below you can check how to use this functionality:
+Beyond the defaults schemas, Tatooine allows you programmatically plug and play custom schemas to work together with the defaults schemas, below you can check how implement this functionality:
 
 ```js
-// schema.custom.js
+// schemas/custom.js
 import cheerio from 'cheerio';
 
 export default {
@@ -138,10 +114,10 @@ export default {
 };
 ```
 ```js
-// sources.custom-schema.js
+// sources.js
 export default [{
     type: 'customschema', // [required] It will connect your custom schema with you custom source.
-    name: 'Custom Source',
+    name: 'Dribbble', // [undefined] If you want, you can add more fields to be returned inside of the response.
     requestOptions: { // [required] This field accept all options of "request" module. (e.g. https://www.npmjs.com/package/request)
       url: 'https://dribbble.com/'
     },
@@ -150,17 +126,16 @@ export default [{
       image: '.dribbble-img img',
       title: '.dribbble-over strong'
     }
-  },
-...
-];
+  }, ... ];
 ```
 ```js
 // index.js
 import Tatooine from 'tatooine';
-import customSchema from './schema.custom';
-import sources from './src.custom-schema';
+import customSchema from './schemas/custom';
+import sources from './sources';
 
 const tatooine = new Tatooine(sources, (response) => {
+  // response[0].results; <-- You'll have a new field called "results" inside of your response for each source.
   ...
 }, {
   schemas: [customSchema] // [optional] All Custom Schemas should be declared using this option.
@@ -169,23 +144,25 @@ const tatooine = new Tatooine(sources, (response) => {
 
 ### BONUS: Optional installation to use ES6 syntax
 
-All the examples above are using the ES6 syntax, so you will need run the steps below to work:
+All the examples above are using the ES6 syntax, so if you already did not, you will need run the steps below to use the package with ES6:
 
-**Note:** *It is not required to use the package, so if you are using the old ES5 syntax in your project, you'll need research how use this module (e.g. It's something like `var Tatooine = required('tatooine').default;`)*.
+**Note:** *It is not required to use the package, so if you are using the old ES5 syntax in your project, you'll need research how use this module (e.g. It's something like `var Tatooine = require('tatooine').default;`)*.
 
-1) Install the dependencies:
+1] Install these dependencies:
 ```ssh
 $ npm install nodemon babel-cli babel-preset-es2015 --save-dev
 ```
-2) Create a `.babelrc` file with the following content in the root folder of your project:
+
+2] Create a `.babelrc` file with the following content in the root folder of your project:
 ```json
 {
   "presets": ["es2015"]
 }
 ```
-3) Finally, Run the following command in your terminal inside of your project folder:
+
+3] Finally, run the following command in your terminal inside of your project folder:
 ```ssh
-$ nodemon index.js --exec babel-nod
+$ nodemon index.js --exec babel-node
 ```
 
 #### Enjoy :D
