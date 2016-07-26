@@ -6,7 +6,7 @@ import dirtyChai from 'dirty-chai';
 import _ from 'lodash';
 import customSchema from './fixtures/schemas/customschema';
 import sources from './fixtures/sources';
-import Tatooine from '../index.js';
+import Tatooine from '../src/index.js';
 
 const expect = chai.expect;
 chai.use(dirtyChai);
