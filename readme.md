@@ -27,6 +27,7 @@ export default [{
 
 ```js
 // index.js
+import Tatooine from 'tatooine';
 import sources from './sources';
 
 const tatooine = new Tatooine(sources, (response) => {
@@ -99,6 +100,7 @@ export default [webScrapingSrc, rssSrc, apiSrc];
 ```
 ```js
 // index.js
+import Tatooine from 'tatooine';
 import sources from './sources';
 
 const tatooine = new Tatooine(sources, (response) => {
@@ -154,6 +156,7 @@ export default [{
 ```
 ```js
 // index.js
+import Tatooine from 'tatooine';
 import customSchema from './schema.custom';
 import sources from './src.custom-schema';
 
