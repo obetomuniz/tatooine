@@ -1,6 +1,6 @@
 {
   "name": "tatooine",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Tatooine: A pluggable, simple and powerful web scraper.",
   "main": "lib/index.js",
   "author": "Beto Muniz <contato@betomuniz.com>",
@@ -12,30 +12,30 @@
     "prepublish": "npm run build"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/obetomuniz/tatooine.git"
+    "type": "git",
+    "url": "https://github.com/obetomuniz/tatooine.git"
   },
   "bugs": {
-    "url" : "https://github.com/obetomuniz/tatooine/issues",
-    "email" : "contato@betomuniz.com"
+    "url": "https://github.com/obetomuniz/tatooine/issues",
+    "email": "contato@betomuniz.com"
   },
   "dependencies": {
-    "async": "2.0.0-rc.6",
+    "async": "2.0.1",
     "cheerio": "0.20.0",
-    "lodash": "4.13.1",
-    "request": "2.72.0"
+    "lodash": "4.14.0",
+    "request": "2.74.0"
   },
   "devDependencies": {
-    "babel-cli": "6.10.1",
-    "babel-core": "6.10.4",
-    "babel-plugin-transform-regenerator": "6.9.0",
+    "babel-cli": "6.11.4",
+    "babel-core": "6.11.4",
+    "babel-plugin-transform-regenerator": "6.11.4",
     "babel-preset-es2015": "6.9.0",
     "chai": "3.5.0",
     "dirty-chai": "1.2.2",
-    "eslint": "3.1.0",
-    "eslint-config-airbnb-base": "4.0.2",
-    "eslint-plugin-import": "1.10.3",
+    "eslint": "3.1.1",
+    "eslint-config-airbnb-base": "5.0.0",
+    "eslint-plugin-import": "1.12.0",
     "mocha": "2.5.3",
-    "nodemon": "1.9.2"
+    "nodemon": "1.10.0"
   }
 }
