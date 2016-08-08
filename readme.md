@@ -171,6 +171,10 @@ $ nodemon index.js --exec babel-node
 
 #### Enjoy :D
 
+## TO-DO
+
+- [ ] AJAX Support
+
 ## License
 
 [The MIT License (MIT)](https://betomuniz.mit-license.org/)
