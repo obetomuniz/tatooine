@@ -6,6 +6,10 @@ export default {
   name: 'JSON Placeholder',
   origin: 'https://jsonplaceholder.typicode.com/',
   max: 5,
+  filter: {
+    field: 'url',
+    query: 'placehold.it'
+  },
   thumbnail: null,
   requestOptions: {
     url: 'https://jsonplaceholder.typicode.com/photos'

@@ -3,12 +3,13 @@ import _ from 'lodash';
 export default {
   type: 'api',
   schema(body, source) {
+    let results = [];
     const { thumbnail, title, url, description, date } = source.selectors;
     const content = { body: JSON.parse(body) };
     const urlPrefix = source.urlPrefix || '';
     const maxResults = source.max || content.body.length;
 
-    return content.body.slice(0, maxResults).map((item, i) => {
+    results = content.body.slice(0, maxResults).map((item, i) => {
       const struct = _.pickBy({
         thumbnail: (thumbnail) ? _.get(content, `body[${i}]${thumbnail}`) : null,
         title: (title) ? _.get(content, `body[${i}]${title}`) : null,
@@ -19,5 +20,11 @@ export default {
 
       return struct;
     });
+
+    if (source.filter && source.filter.field && source.filter.query) {
+      results = results.filter((k) => k[source.filter.field].indexOf(source.filter.query) > 0);
+    }
+
+    return results.slice(0, maxResults);
   }
 };

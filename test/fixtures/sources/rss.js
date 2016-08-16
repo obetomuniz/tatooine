@@ -6,6 +6,10 @@ export default {
   name: 'Smashing Magazine',
   origin: 'https://www.smashingmagazine.com/',
   max: 5,
+  filter: {
+    field: 'url',
+    query: 'smashingmagazine.com'
+  },
   thumbnail: null,
   requestOptions: {
     url: 'https://www.smashingmagazine.com/feed/'

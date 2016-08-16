@@ -1,5 +1,5 @@
 /* eslint no-unused-vars: 1 */
-/* global tatooine, describe, before, after, beforeEach, it */
+/* global tatooine, describe, before, after, beforeEach, it, it */
 
 import chai from 'chai';
 import dirtyChai from 'dirty-chai';

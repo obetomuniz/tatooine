@@ -11,7 +11,7 @@ export default {
     const urlPrefix = source.urlPrefix || '';
     const maxResults = source.max || currentDocument.length;
 
-    currentDocument.slice(0, maxResults).each(function () {
+    currentDocument.each(function () {
       const struct = _.pickBy({
         thumbnail: (thumbnail) ? $(this).find(thumbnail).text() : null,
         title: (title) ? $(this).find(title).text() : null,
@@ -23,6 +23,10 @@ export default {
       results = [...results, struct];
     });
 
-    return results;
+    if (source.filter && source.filter.field && source.filter.query) {
+      results = results.filter((k) => k[source.filter.field].indexOf(source.filter.query) > 0);
+    }
+
+    return results.slice(0, maxResults);
   }
 };

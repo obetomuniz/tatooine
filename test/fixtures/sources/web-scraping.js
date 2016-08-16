@@ -7,6 +7,10 @@ export default {
   origin: 'https://github.com/',
   urlPrefix: 'https://github.com',
   max: 5,
+  filter: {
+    field: 'url',
+    query: 'github.com'
+  },
   thumbnail: null,
   requestOptions: {
     url: 'https://github.com/trending/javascript'
