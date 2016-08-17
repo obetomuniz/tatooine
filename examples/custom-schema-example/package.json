@@ -1,0 +1,25 @@
+{
+  "name": "tatooine-simple-example",
+  "version": "1.0.0",
+  "description": "A simple example of Tatooine usage",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tatooine",
+    "example"
+  ],
+  "author": "Beto Muniz",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "0.20.0",
+    "tatooine": "0.0.24"
+  },
+  "devDependencies": {
+    "babel-cli": "6.11.4",
+    "babel-preset-es2015": "6.13.2",
+    "nodemon": "1.10.0"
+  }
+}

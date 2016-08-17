@@ -12,182 +12,78 @@
 $ npm install tatooine --save
 ```
 
-## Simple Usage
+## Examples
 
-Tatooine came to you with some defaults schemas and below you can check how to use they:
+- [Simple Example](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/)
+- [Custom Schema Example](https://github.com/obetomuniz/tatooine/tree/master/examples/custom-schema-example/)
+
+## Documentation
 
 ```js
-// sources/api.default-schema.js
+const tatooine = new Tatooine(sources (Array of Objects), callback (Function), options (Object));
+```
+
+**[required] sources**
+
+Look for the [Default Schemas](#default-schemas) and [Custom Schemas](#custom-schemas) sections to learn what you can add here.
+
+**[required] callback**
+
+Return an array with the responses
+
+**[optional] options**
+
+An object thats allow configure Tatooine to accept the following options:
+
+`schemas`: An array of objects that allow you plug and play with new schemas beyond of the schemas provided by Tatooine.
+
+
+### Default Schemas
+
+Tatooine comes for you with three default schemas ready to use and they can be used with this instructions:
+
+- [Web Scraping Schema docs](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/sources/webscraping.js)
+- [API Schema docs](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/sources/api.js)
+- [RSS Schema docs](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/sources/rss.js)
+
+### Custom Schemas
+
+Beyond of the schemas provided by default, you can create and plugin schemas with yours specific rules. Basically, you should follow this way to extend Tatooine and use this feature:
+
+```js
+// yourschema.js
 export default {
-  name: 'JSON Placeholder', // [undefined] If you want, you can add more fields to be returned inside of the response.
-  type: 'api', // [required] It's important use this declaration to enable the default "api" schema.
-  urlPrefix: null, // [optional] Add this field to put a url prefix if the results don't have.
-  max: 5, // [optional] Add this field to put a limit of fields returned.
-  filter: { // [optional] Filter the results that contains a query term
-    field: "url", // [required] Accepts root, title, url, thumbnail, description and date.
-    query: "placehold.it" // [required] Query term
-  },
-  requestOptions: { // [required] This field accept all options of "request" module. (e.g. https://www.npmjs.com/package/request)
-    url: 'https://jsonplaceholder.typicode.com/photos'
-  },
-  selectors: { // [required] Accepts title, url, thumbnail, description and date.
-    title: '.title',
-    url: '.url'
-  }
-};
-```
-```js
-// sources/rss.default-schema.js
-export default {
-  name: 'Smashing Magazine', // [undefined] If you want, you can add more fields to be returned inside of the response.
-  type: 'rss', // [required] It's important use this declaration to enable the default "rss" schema.
-  urlPrefix: null, // [optional] Add this field to put a url prefix if the results don't have.
-  max: 5, // [optional] Add this field to put a limit of fields returned.
-  filter: { // [optional] Filter the results that contains a query term
-    field: "url", // [required] Accepts root, title, url, thumbnail, description and date.
-    query: "smashingmagazine.com" // [required] Query term
-  },
-  requestOptions: { // [required] This field accept all options of "request" module. (e.g. https://www.npmjs.com/package/request)
-    url: 'https://www.smashingmagazine.com/feed/'
-  },
-  selectors: { // [required] Accepts root, title, url, thumbnail, description and date.
-    root: 'channel item', // [required] Here you'll add the loop node. Ex: In a `ul#item-list li` you can add `root: #item-list li`.
-    title: 'title',
-    url: 'link'
-  }
-};
-```
-```js
-// sources/webscraping.default-schema.js
-export default {
-  name: 'GitHub Trends - JavaScript', // [undefined] If you want, you can add more fields to be returned inside of the response.
-  type: 'web-scraping', // [required] It's important use this declaration to enable the default "web-scraping" schema.
-  urlPrefix: 'https://github.com', // [optional] Add this field to put a url prefix if the results don't have.
-  max: 5, // [optional] Add this field to put a limit of fields returned.
-  filter: { // [optional] Filter the results that contains a query term
-    field: "url", // [required] Accepts root, title, url, thumbnail, description and date.
-    query: "github.com" // [required] Query term
-  },
-  requestOptions: { // [required] This field accept all options of "request" module. (e.g. https://www.npmjs.com/package/request)
-    url: 'https://github.com/trending/javascript'
-  },
-  selectors: { // [required] Accepts root, title, url, thumbnail, description and date.
-    root: '.repo-list-item', // [required] Here you'll add the loop node. Ex: In a `ul#item-list li` you can add `root: #item-list li`.
-    title: '.repo-list-name a',
-    url: '.repo-list-name a'
-  }
-};
-```
-```js
-// [optional] source loader
-// sources/index.js
-import webScrapingSrc from './webscraping.default-schema';
-import rssSrc from './rss.default-schema';
-import apiSrc from './api.default-schema';
-
-export default [webScrapingSrc, rssSrc, apiSrc];
-```
-```js
-// index.js
-import Tatooine from 'tatooine';
-import sources from './sources';
-
-const tatooine = new Tatooine(sources, (response) => {
-  // response[0].results; <-- You'll have a new field called "results" inside of your response for each source.
-  // response[1].results; <-- You'll have a new field called "results" inside of your response for each source.
-  // response[2].results; <-- You'll have a new field called "results" inside of your response for each source.
-  ...
-});
-```
-
-## Custom Usage
-
-Beyond the defaults schemas, Tatooine allows you programmatically plug and play custom schemas to work together with the defaults schemas, below you can check how implement this functionality:
-
-```js
-// schemas/custom.js
-import cheerio from 'cheerio';
-
-export default {
-  type: 'customschema', // [required] It will connect your custom schema with you custom source.
+  type: 'yourschema', // [required] This will connect your custom schema with you custom source.
   schema(body, source) { // [required] [parameters: body and source] Here you'll be able to create the logic of your schema.
     let results = [];
-    const { root, image, title } = source.selectors;
-    const $ = cheerio.load(body);
 
-    $(root).slice(0, 5).each(function () {
-      const struct = {
-        image: (image) ? $(this).find(image).attr('src') : null,
-        title: (title) ? $(this).find(title).text().trim() : null
-      };
+    // Your rules
 
-      results = [...results, struct];
-    });
-
-    // This schema should return 5 results from a source and each one will have a image and a title.
-    return results;
+    return results; // [required] It should return an array of objects with the results
   }
 };
 ```
 ```js
-// sources.js
-export default [{
-    type: 'customschema', // [required] It will connect your custom schema with you custom source.
-    name: 'Dribbble', // [undefined] If you want, you can add more fields to be returned inside of the response.
-    requestOptions: { // [required] This field accept all options of "request" module. (e.g. https://www.npmjs.com/package/request)
-      url: 'https://dribbble.com/'
-    },
-    selectors: {
-      root: '.dribbble',
-      image: '.dribbble-img img',
-      title: '.dribbble-over strong'
-    }
-  }, ... ];
+// yoursource.js
+export default {
+  type: 'yourschema', // [required] It will connect your custom schema with you custom source.
+  requestOptions: { // [required] This field accept all options of "request" module. (e.g. https://www.npmjs.com/package/request)
+    url: 'https://urltoconsume.com/'
+  }
+};
 ```
+
+To understand and for a easy usage of this feature is highly recommended look for the code of [this example](https://github.com/obetomuniz/tatooine/tree/master/examples/custom-schema-example/).
+
+### BONUS: Usage of Tatooine inside of an old project
+
+If you are using the old ES5 syntax in your project, use this declaration to inject Tatooine as a dependency:
+
 ```js
-// index.js
-import Tatooine from 'tatooine';
-import customSchema from './schemas/custom';
-import sources from './sources';
-
-const tatooine = new Tatooine(sources, (response) => {
-  // response[0].results; <-- You'll have a new field called "results" inside of your response for each source.
-  ...
-}, {
-  schemas: [customSchema] // [optional] All Custom Schemas should be declared using this option.
-});
+var Tatooine = require('tatooine').default;
 ```
 
-### BONUS: Optional installation to use ES6 syntax
-
-All the examples above are using the ES6 syntax, so if you already did not, you will need run the steps below to use the package with ES6:
-
-**Note:** *It is not required to use the package, so if you are using the old ES5 syntax in your project, you'll need research how use this module (e.g. It's something like `var Tatooine = require('tatooine').default;`)*.
-
-1] Install these dependencies:
-```ssh
-$ npm install nodemon babel-cli babel-preset-es2015 --save-dev
-```
-
-2] Create a `.babelrc` file with the following content in the root folder of your project:
-```json
-{
-  "presets": ["es2015"]
-}
-```
-
-3] Finally, run the following command in your terminal inside of your project folder:
-```ssh
-$ nodemon index.js --exec babel-node
-```
-
-#### Enjoy :D
-
-## TO-DO
-
-- [ ] AJAX Support
-
-## License
+#### License
 
 [The MIT License (MIT)](https://betomuniz.mit-license.org/)
 
