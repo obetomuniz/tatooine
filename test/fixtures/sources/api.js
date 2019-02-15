@@ -8,7 +8,7 @@ export default {
   max: 5,
   filter: {
     field: 'url',
-    query: 'placehold.it'
+    query: 'via.placeholder.com'
   },
   thumbnail: null,
   requestOptions: {

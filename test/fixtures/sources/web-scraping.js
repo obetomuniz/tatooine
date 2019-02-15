@@ -16,11 +16,11 @@ export default {
     url: 'https://github.com/trending/javascript'
   },
   selectors: {
-    root: '.repo-list-item',
+    root: '.repo-list li',
     thumbnail: null,
-    title: '.repo-list-name a',
-    description: '.repo-list-description',
+    title: 'h3 a',
+    description: null,
     date: null,
-    url: '.repo-list-name a'
+    url: 'h3 a'
   }
 };
