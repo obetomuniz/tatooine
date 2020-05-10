@@ -1,6 +1,5 @@
-import Tatooine from "../../lib/index.js"
+import Tatooine from "../../lib/index.esm.js"
 
 import schemas from "./schemas.js"
 
-// eslint-disable-next-line no-console
 Tatooine(schemas).then(console.log)

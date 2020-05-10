@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/obetomuniz/tatooine.git"

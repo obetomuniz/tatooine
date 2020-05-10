@@ -1,5 +1,5 @@
 const api = {
-  type: "json",
+  engine: "json",
   requestOptions: {
     url: "https://jsonplaceholder.typicode.com/photos",
   },

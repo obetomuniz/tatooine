@@ -1,6 +1,7 @@
 src/
 examples/
 .eslintrc
+.eslintignore
 .gitignore
 .prettierrc
 .prettierignore

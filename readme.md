@@ -15,7 +15,7 @@ $ npm install tatooine --save
 ## Documentation
 
 ```js
-const result = Tatooine(schemas, customEngines)
+const promise = Tatooine(schemas, customEngines)
 ```
 
 **@param schemas {Array\<Object\>}**
@@ -28,7 +28,7 @@ A list of custom engines to be registered.
 
 **@return {Promise}**
 
-Returns a promise with data sources. If configured schemas are not valid, it returns `[]`.
+Returns a promise with data sources.
 
 ## Default Engines
 
@@ -39,18 +39,18 @@ For convenience, Tatooine came with two useful engines.
 
 ## Custom Engines
 
-Not just the standard engines provided, you can also create **custom engines** with your own rules. Basically, you should follow the structure below to extend Tatooine capabilities:
+Not just the standard engines, you can also create **custom engines** with your own rules. Basically, you should follow the structure below to extend Tatooine capabilities:
 
 ```js
-// customengine.js
+// custom-engine.js
 
 function getSourcesFromSomewhere(schema) {
   // Your engine logic
 }
 
 export default {
-  type: "customschema",
-  runtime: getSourcesFromSomewhere,
+  engine: "custom",
+  process: getSourcesFromSomewhere,
 }
 ```
 
@@ -58,7 +58,7 @@ export default {
 // schemas.js
 
 export default [{
-  type: "customschema",
+  engine: "custom",
   ...
 }];
 ```
@@ -68,10 +68,10 @@ export default [{
 
 import Tatooine from "tatooine"
 
-import customengine from "./customengine.js"
+import customengine from "./custom-engine.js"
 import schemas from "./schemas.js"
 
-const result = await Tatooine(schemas, [customengine])
+const promise = Tatooine(schemas, [customengine])
 ```
 
 #### License

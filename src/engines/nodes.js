@@ -65,6 +65,6 @@ async function getSourcesFromNodes({
 }
 
 export default {
-  type: "nodes",
-  runtime: getSourcesFromNodes,
+  engine: "nodes",
+  process: getSourcesFromNodes,
 }

@@ -38,6 +38,6 @@ async function getSourcesFromJSON({
 }
 
 export default {
-  type: "json",
-  runtime: getSourcesFromJSON,
+  engine: "json",
+  process: getSourcesFromJSON,
 }
