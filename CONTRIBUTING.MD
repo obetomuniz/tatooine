@@ -3,7 +3,7 @@
 - Before start anything, search previous issues or pull requests, as yours may be a duplicate.
 - To start any change in the code, please, create a pull request.
 - After your changes, check if it broke the tests, fix it or create new tests if needed.
-- Make sure your text editor is set to remove trailing whitespace and works fine with ESLint.
+- Make sure your text editor is set to remove trailing whitespace and works fine with ESLint/Prettier/Jest.
 
 ## Submiting a pull request
 

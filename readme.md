@@ -1,8 +1,8 @@
 # Tatooine: A pluggable, simple and powerful web scraper.
 
-[![Dependency Status](https://dependencyci.com/github/obetomuniz/tatooine/badge)](https://dependencyci.com/github/obetomuniz/tatooine)
+<!-- [![Dependency Status](https://dependencyci.com/github/obetomuniz/tatooine/badge)](https://dependencyci.com/github/obetomuniz/tatooine)
 [![Build Status](https://travis-ci.org/obetomuniz/tatooine.svg?branch=master)](https://travis-ci.org/obetomuniz/tatooine)
-[![Coverage Status](https://coveralls.io/repos/github/obetomuniz/tatooine/badge.svg?branch=master)](https://coveralls.io/github/obetomuniz/tatooine?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/obetomuniz/tatooine/badge.svg?branch=master)](https://coveralls.io/github/obetomuniz/tatooine?branch=master) -->
 
 <img src="https://cloud.githubusercontent.com/assets/1680157/17003290/a47ea06a-4ea5-11e6-8fc0-c36988534226.png" />
 
@@ -12,75 +12,66 @@
 $ npm install tatooine --save
 ```
 
-## Examples
-
-- [Simple Example](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/)
-- [Custom Schema Example](https://github.com/obetomuniz/tatooine/tree/master/examples/custom-schema-example/)
-
 ## Documentation
 
 ```js
-const tatooine = new Tatooine(sources (Array of Objects), callback (Function), options (Object));
+const result = Tatooine(schemas, customEngines);
 ```
 
-**[required] sources**
+**@param schemas {Array<Object>}**
 
-Look for the [Default Schemas](#default-schemas) and [Custom Schemas](#custom-schemas) sections to learn what you can add here.
+A list of schemas following the default and/or custom engines registered.
 
-**[required] callback**
+**@param customEngines {Array<Promise>}**
 
-Return an array with the responses
+A list of custom engines to be registered.
 
-**[optional] options**
+**@return {Promise}**
 
-An object thats allow configure Tatooine to accept the following options:
-
-`schemas`: An array of objects that allow you plug and play with new schemas beyond of the schemas provided by Tatooine.
-
+Returns a promise with data sources. If configured schemas are not valid, it return `[]`.
 
 ### Default Schemas
 
-Tatooine comes for you with three default schemas ready to use and they can be used with this instructions:
+For commodity, Tatooine comes for you with two default engines.
 
-- [Web Scraping Schema docs](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/sources/webscraping.js)
-- [API Schema docs](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/sources/api.js)
-- [RSS Schema docs](https://github.com/obetomuniz/tatooine/tree/master/examples/simple-example/sources/rss.js)
+- [Nodes Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/nodes)
+- [JSON Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/json)
 
-### Custom Schemas
+### Custom Engines
 
-Beyond of the schemas provided by default, you can create and plugin schemas with yours specific rules. Basically, you should follow this way to extend Tatooine and use this feature:
+Beyond of the default engines provided by default, you can create and plugin custom engines with yours specific rules. Basically, you should follow the below to extend Tatooine capabilities:
 
 ```js
-// yourschema.js
-export default {
-  type: 'yourschema', // [required] This will connect your custom schema with you custom source.
-  schema(body, source) { // [required] [parameters: body and source] Here you'll be able to create the logic of your schema.
-    let results = [];
+// customengine.js
 
-    // Your rules
+function getSourcesFromSomewhere(schema) {
+  // Your engine logic
+}
 
-    return results; // [required] It should return an array of objects with the results
-  }
-};
-```
-```js
-// yoursource.js
 export default {
-  type: 'yourschema', // [required] It will connect your custom schema with you custom source.
-  requestOptions: { // [required] This field accept all options of "request" module. (e.g. https://www.npmjs.com/package/request)
-    url: 'https://urltoconsume.com/'
-  }
+  type: "customschema",
+  runtime: getSourcesFromSomewhere,
 };
 ```
 
-To understand and for a easy usage of this feature is highly recommended look for the code of [this example](https://github.com/obetomuniz/tatooine/tree/master/examples/custom-schema-example/).
+```js
+// schemas.js
 
-### BONUS: Usage of Tatooine inside of an old project
-
-If you are using the old ES5 syntax in your project, use this declaration to inject Tatooine as a dependency:
+export default [{
+  type: "customschema",
+  ...
+}];
+```
 
 ```js
-var Tatooine = require('tatooine').default;
+// index.js
+
+import Tatooine from "tatooine";
+
+import customengine from "./customengine.js";
+import schemas from "./schemas.js";
+
+const result = await Tatooine(schemas, [customengine]);
 ```
 
 #### License

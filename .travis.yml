@@ -1,6 +1,0 @@
-language: node_js
-node_js:
-  - '6'
-  - '6.2'
-after_success:
-  - npm run test:coverage:travis

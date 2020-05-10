@@ -1,1 +1,8 @@
-src
+src/
+examples/
+.eslintrc
+.gitignore
+.prettierrc
+.prettierignore
+CONTRIBUTING.md
+rollup.config.js

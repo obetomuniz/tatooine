@@ -4,15 +4,87 @@
     "es6": true,
     "node": true
   },
-  "extends": "airbnb-base",
-  "rules" : {
-    "comma-dangle": [2, "never"],
-    "indent": ["error", 2],
-    "prefer-template": 2,
-    "no-console": 0,
-    "new-cap": 0,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-    "no-underscore-dangle": 0,
-    "global-require": 0
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:prettier/recommended",
+    "plugin:jsdoc/recommended"
+  ],
+  "rules": {
+    "block-scoped-var": "error",
+    "complexity": [
+      "error",
+      {
+        "max": 20
+      }
+    ],
+    "consistent-return": "error",
+    "curly": ["error", "all"],
+    "default-case": "error",
+    "guard-for-in": "error",
+    "no-await-in-loop": "error",
+    "no-extra-bind": "error",
+    "no-extra-label": "error",
+    "no-floating-decimal": "error",
+    "no-implicit-coercion": "error",
+    "no-implicit-globals": "error",
+    "no-implied-eval": "error",
+    "no-loop-func": "error",
+    "no-new": "error",
+    "no-new-func": "error",
+    "no-new-wrappers": "error",
+    "no-restricted-properties": "error",
+    "no-return-assign": "error",
+    "no-return-await": "error",
+    "no-sequences": "error",
+    "no-shadow": "error",
+    "no-template-curly-in-string": "error",
+    "no-throw-literal": "error",
+    "no-unmodified-loop-condition": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-useless-call": "error",
+    "no-useless-concat": "error",
+    "no-console": "error",
+    "prefer-object-spread": "error",
+    "prefer-promise-reject-errors": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "radix": ["error", "as-needed"],
+    "require-await": "error",
+    "rest-spread-spacing": ["error", "never"],
+    "import/no-extraneous-dependencies": "error",
+    "import/no-unresolved": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          ["external", "unknown"],
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ]
+      }
+    ],
+    "jsdoc/require-jsdoc": "off",
+    "jsdoc/require-returns": "off",
+    "jsdoc/require-param-description": "off",
+    "jsdoc/check-indentation": "error",
+    "eslint-comments/no-unused-disable": "error"
+  },
+  "settings": {
+    "jsdoc": {
+      "tagNamePreference": {
+        "returns": "return",
+        "yields": "yield"
+      }
+    }
   }
 }
