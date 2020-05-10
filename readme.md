@@ -28,18 +28,18 @@ A list of custom engines to be registered.
 
 **@return {Promise}**
 
-Returns a promise with data sources. If configured schemas are not valid, it return `[]`.
+Returns a promise with data sources. If configured schemas are not valid, it returns `[]`.
 
 ## Default Engines
 
-For commodity, Tatooine comes for you with two default engines.
+For convenience, Tatooine came with two useful engines.
 
-- [Nodes Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/nodes)
-- [JSON Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/json)
+- [Nodes Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/nodes) (e.g. RSS, Web Scraping, etc.)
+- [JSON Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/json) (e.g. APIs, Web Services, etc.)
 
 ## Custom Engines
 
-Beyond of the default engines provided by default, you can create and plugin custom engines with yours specific rules. Basically, you should follow the below to extend Tatooine capabilities:
+Not just the standard engines provided, you can also create **custom engines** with your own rules. Basically, you should follow the structure below to extend Tatooine capabilities:
 
 ```js
 // customengine.js
