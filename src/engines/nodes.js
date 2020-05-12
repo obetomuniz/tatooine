@@ -32,6 +32,7 @@ async function getSourcesFromNodes({
   selectors,
   limit,
   metadata,
+  fork,
 }) {
   try {
     const { root, ...rest } = selectors
@@ -58,7 +59,7 @@ async function getSourcesFromNodes({
       metadata,
     }
 
-    return result
+    return fork ? fork(result) : result
   } catch ({ message }) {
     const result = {
       sources: [],
@@ -66,7 +67,7 @@ async function getSourcesFromNodes({
       error: message,
     }
 
-    return result
+    return fork ? fork(result) : result
   }
 }
 

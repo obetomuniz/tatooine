@@ -10,6 +10,7 @@ async function getSourcesFromJSON({
   selectors,
   limit,
   metadata,
+  fork,
 }) {
   try {
     const { data } = await axios(requestOptions)
@@ -34,7 +35,7 @@ async function getSourcesFromJSON({
       metadata,
     }
 
-    return result
+    return fork ? fork(result) : result
   } catch ({ message }) {
     const result = {
       sources: [],
@@ -42,7 +43,7 @@ async function getSourcesFromJSON({
       error: message,
     }
 
-    return result
+    return fork ? fork(result) : result
   }
 }
 
