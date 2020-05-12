@@ -4,6 +4,7 @@ const api = {
     url: "https://jsonplaceholder.typicode.com/photos",
   },
   selectors: {
+    // root: "a.b.c", <- If needed, you can even pass a `root` config to access children data from a parent JSON node.
     title: {
       value: "title",
     },
