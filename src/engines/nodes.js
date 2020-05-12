@@ -33,8 +33,8 @@ async function getSourcesFromNodes({
   limit,
   metadata,
 }) {
-  const { root, ...rest } = selectors
   try {
+    const { root, ...rest } = selectors
     const { data } = await axios(requestOptions)
     const dom = new jsdom.JSDOM(data, requestOptions)
     const doc = dom.window.document
@@ -59,8 +59,14 @@ async function getSourcesFromNodes({
     }
 
     return result
-  } catch (e) {
-    throw new Error(e)
+  } catch ({ message }) {
+    const result = {
+      sources: [],
+      metadata,
+      error: message,
+    }
+
+    return result
   }
 }
 
