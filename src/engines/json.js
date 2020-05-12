@@ -1,17 +1,21 @@
 import axios from "axios"
 
-function getSource(jsonObject, selector) {
+const getSource = (jsonObject, selector) => {
   const { value, prefix = "", suffix = "" } = selector
   return `${prefix}${jsonObject[value]}${suffix}`
 }
 
-async function getSourcesFromJSON({
+const createResult = (result, fork) => {
+  return fork ? fork(result) : result
+}
+
+const getSourcesFromJSON = async ({
   requestOptions,
   selectors,
   limit,
   metadata,
   fork,
-}) {
+}) => {
   try {
     const { data } = await axios(requestOptions)
     const root = selectors.root
@@ -30,20 +34,22 @@ async function getSourcesFromJSON({
       return source
     })
 
-    const result = {
-      sources: sources.slice(0, limit),
-      metadata,
-    }
-
-    return fork ? fork(result) : result
+    return createResult(
+      {
+        sources: sources.slice(0, limit),
+        metadata,
+      },
+      fork
+    )
   } catch ({ message }) {
-    const result = {
-      sources: [],
-      metadata,
-      error: message,
-    }
-
-    return fork ? fork(result) : result
+    return createResult(
+      {
+        sources: [],
+        metadata,
+        error: message,
+      },
+      fork
+    )
   }
 }
 

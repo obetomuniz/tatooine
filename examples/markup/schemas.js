@@ -1,5 +1,5 @@
 const scraping = {
-  engine: "nodes",
+  engine: "markup",
   requestOptions: {
     url: "https://github.com/trending/javascript",
   },
@@ -24,7 +24,7 @@ const scraping = {
 }
 
 const rss = {
-  engine: "nodes",
+  engine: "markup",
   requestOptions: {
     url: "https://www.smashingmagazine.com/feed",
     contentType: "text/xml",

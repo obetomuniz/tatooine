@@ -1,7 +1,7 @@
 import axios from "axios"
 import jsdom from "jsdom"
 
-function inlineText(text, parse) {
+const inlineText = (text, parse) => {
   if (!parse) {
     return text
   }
@@ -11,7 +11,7 @@ function inlineText(text, parse) {
   return inlineValue.replace(/\s+/g, " ").trim()
 }
 
-function getSource(node, selector) {
+const getSource = (node, selector) => {
   const { value, attribute, prefix = "", suffix = "", inline = true } = selector
 
   if (attribute) {
@@ -27,13 +27,17 @@ function getSource(node, selector) {
   )}${suffix}`
 }
 
-async function getSourcesFromNodes({
+const createResult = (result, fork) => {
+  return fork ? fork(result) : result
+}
+
+const getSourcesFromMarkup = async ({
   requestOptions,
   selectors,
   limit,
   metadata,
   fork,
-}) {
+}) => {
   try {
     const { root, ...rest } = selectors
     const { data } = await axios(requestOptions)
@@ -54,24 +58,26 @@ async function getSourcesFromNodes({
       sources = [...sources, source]
     })
 
-    const result = {
-      sources: sources.slice(0, limit),
-      metadata,
-    }
-
-    return fork ? fork(result) : result
+    return createResult(
+      {
+        sources: sources.slice(0, limit),
+        metadata,
+      },
+      fork
+    )
   } catch ({ message }) {
-    const result = {
-      sources: [],
-      metadata,
-      error: message,
-    }
-
-    return fork ? fork(result) : result
+    return createResult(
+      {
+        sources: [],
+        metadata,
+        error: message,
+      },
+      fork
+    )
   }
 }
 
 export default {
-  engine: "nodes",
-  run: getSourcesFromNodes,
+  engine: "markup",
+  run: getSourcesFromMarkup,
 }

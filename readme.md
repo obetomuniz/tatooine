@@ -20,7 +20,7 @@ const promise = Tatooine(schemas, customEngines)
 
 **@param schemas {Array\<Object\>}**
 
-A list of schemas following the default and/or custom engines registered.
+A list of schemas following the standard and/or custom engines registered.
 
 **@param customEngines {Array\<Promise\>}**
 
@@ -30,11 +30,11 @@ A list of custom engines to be registered.
 
 Returns a promise with data sources.
 
-## Default Engines
+## Standard Engines
 
 For convenience, Tatooine came with two useful engines.
 
-- [Nodes Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/nodes) (e.g. RSS, Web Scraping, etc.)
+- [Markup Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/markup) (e.g. RSS, Web Scraping, etc.)
 - [JSON Engine docs](https://github.com/obetomuniz/tatooine/tree/master/examples/json) (e.g. APIs, Web Services, etc.)
 
 ## Custom Engines
