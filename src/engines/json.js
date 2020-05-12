@@ -39,5 +39,5 @@ async function getSourcesFromJSON({
 
 export default {
   engine: "json",
-  process: getSourcesFromJSON,
+  run: getSourcesFromJSON,
 }

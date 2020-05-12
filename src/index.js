@@ -11,9 +11,9 @@ function Tatooine(schemas, customEngines = []) {
   let sources = []
 
   schemas.map((schema) => {
-    engines.forEach(({ engine, process }) => {
+    engines.forEach(({ engine, run }) => {
       if (engine === schema.engine) {
-        sources = [...sources, process(schema)]
+        sources = [...sources, run(schema)]
       }
     })
   })

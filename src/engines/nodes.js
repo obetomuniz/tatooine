@@ -66,5 +66,5 @@ async function getSourcesFromNodes({
 
 export default {
   engine: "nodes",
-  process: getSourcesFromNodes,
+  run: getSourcesFromNodes,
 }

@@ -50,7 +50,7 @@ function getSourcesFromSomewhere(schema) {
 
 export default {
   engine: "custom",
-  process: getSourcesFromSomewhere,
+  run: getSourcesFromSomewhere,
 }
 ```
 
