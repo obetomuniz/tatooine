@@ -14,8 +14,8 @@ $ npm install tatooine --save
 ## Documentation
 
 ```js
-// schemas: array<Schema> => A list of schemas.
-// customEngines?: array<CustomEngines> => Optional list of custom engines.
+// schemas: Array<Schema> => A list of schemas.
+// customEngines?: Array<CustomEngines> => An optional list of custom engines.
 
 const promise = Tatooine(schemas, customEngines)
 ```
@@ -25,7 +25,7 @@ const promise = Tatooine(schemas, customEngines)
 For convenience, Tatooine came with two useful standard engines.
 
 - [Markup Engine docs](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/MARKUP.md) (e.g. RSS, Web Scraping, etc.)
-- [JSON Engines docs](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/JSON.md) (e.g. APIs, Web Services, etc.)
+- [JSON Engine docs](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/JSON.md) (e.g. APIs, Web Services, etc.)
 
 ### Extending Standard Engines
 

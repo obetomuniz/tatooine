@@ -2,35 +2,35 @@
 
 ```js
 const api = {
-  // engine: string => Engine identifier
+  // engine: String => Engine identifier
   engine: "json",
-  // options: object<object<AxiosConfig>|int> => Engine options
+  // options: Object<Object<AxiosConfig>|Integer> => Engine options
   options: {
-    // request: object<AxiosConfig> => Any 'axios' configs
+    // request: Object<AxiosConfig> => 'axios' allowed config
     request: {
-        // url: string => URL that should be loaded
+        // url: String => URL that should be loaded
         url: "https://...",
     },
-    // limit?: int => It limits results returned
+    // limit?: Integer => It limits results returned
     limit: 5,
   },
-  // selectors: object<object<string>|string> => It map data list
+  // selectors: Object<Object<String>|String> => It map data list
   selectors: {
-    // root?: string => It allows config some parent JSON chain. (Use dot notation as string like `a | a.b.c`)
+    // root?: String => It allows config some parent JSON chain. (Use dot notation as String like `a | a.b.c`)
     root: '...',
-    // selector?: object<string> => Key that will store the data extracted
+    // selector?: Object<String> => Object key that will store the data extracted as configured
     selector: {
-        // value: string => JSON key to extract content
+        // value: String => JSON key to extract content
         value: ...,
-        // prefix?: string => It allows prefix the `value` returned
+        // prefix?: String => It allows prefix the `value` returned
         prefix: ...,
-        // suffix?: string => It allows suffix the `value` returned
+        // suffix?: String => It allows suffix the `value` returned
         suffix: ...,
     },
   },
-  // metadata?: object<any> => It pass additional data on the response
+  // metadata?: Object<Any> => It pass additional data on the response
   metadata: { ... },
-  // fork?: function => It extend engine or postprocess data returned
+  // fork?: Function => It extend engine or postprocess data returned
   fork: ({ sources, metadata, error }) => ...
 }
 ```
