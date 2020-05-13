@@ -4,7 +4,7 @@
 const api = {
   // engine: String => Engine identifier
   engine: "markup",
-  // options: Object<Object<AxiosConfig?|String|Object?>|JSDOM?|Integer?> => Engine options
+  // options: Object<Object<AxiosConfig?|String|Object?>|JSDOMConfig?|Integer?> => Engine options
   options: {
     // request: Object<AxiosConfig?|String|Object?> => It allows configure markup request. Non-SPA allows Axios settings.
     request: {
