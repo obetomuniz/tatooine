@@ -3,6 +3,7 @@ const scraping = {
   options: {
     request: {
       url: "https://github.com/trending/javascript",
+      spa: true,
     },
     limit: 5,
   },

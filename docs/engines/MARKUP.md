@@ -4,10 +4,12 @@
 const api = {
   // engine: String => Engine identifier
   engine: "markup",
-  // options: Object<Object<Object<Object<String>>|JSDOMConfig>|Integer> => Engine options
+  // options: Object<Object<AxiosConfig?|Object<Boolean>|Object<String>>JSDOMConfig>|Integer> => Engine options
   options: {
-    // request: Object<Object<String>> => It allows configure markup request.
+    // request: Object<AxiosConfig?|Object<Boolean>|Object<String>> => It allows configure markup request. Non-spa allows any 'axios' config.
     request: {
+        // spa?: Boolean => Set this schema as a SPA resource (It will use Puppetter, but will be more slow). Default is <false>
+        spa: false,
         // url: String => URL that should be loaded
         url: "https://...",
     },
@@ -31,7 +33,7 @@ const api = {
         prefix: '...',
         // suffix?: String => It allows suffix the data returned
         suffix: ...,
-        // inline?: Boolean => It format content inline or not. Default is <true>.
+        // inline?: Boolean => It format content inline or not. Default is <true>
         inline: true,
         // attribute?: String => It allows fetch the data from some node attribute
         attribute: '...',
