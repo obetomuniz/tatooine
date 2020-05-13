@@ -8,7 +8,7 @@ const api = {
   options: {
     // request: Object<AxiosConfig?|Object<Boolean>|Object<String>> => It allows configure markup request. Non-spa allows any 'axios' config.
     request: {
-        // spa?: Boolean => Set this schema as a SPA resource (It will use Puppetter, but will be more slow). Default is <false>
+        // spa?: Boolean => Set this schema as a SPA resource (It will use Puppeteer for request, which is slower). Default is <false>
         spa: false,
         // url: String => URL that should be loaded
         url: "https://...",
