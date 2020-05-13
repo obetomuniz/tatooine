@@ -36,9 +36,6 @@ The `fork` property allows extends the engine capabilities for your needs while 
 
 import Tatooine from "tatooine"
 
-import customengine from "./custom-engine.js"
-import schemas from "./schemas.js"
-
 const schemas = [{
   engine: "json",
   options: { ... },
