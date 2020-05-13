@@ -31,17 +31,11 @@ const createResult = (result, fork) => {
   return fork ? fork(result) : result
 }
 
-const getSourcesFromMarkup = async ({
-  requestOptions,
-  selectors,
-  limit,
-  metadata,
-  fork,
-}) => {
+const getSourcesFromMarkup = async ({ options, selectors, metadata, fork }) => {
   try {
     const { root, ...rest } = selectors
-    const { data } = await axios(requestOptions)
-    const dom = new jsdom.JSDOM(data, requestOptions)
+    const { data } = await axios(options.request)
+    const dom = new jsdom.JSDOM(data, options.dom)
     const doc = dom.window.document
     const nodeList = doc.querySelectorAll(root.value)
     let sources = []
@@ -60,7 +54,7 @@ const getSourcesFromMarkup = async ({
 
     return createResult(
       {
-        sources: sources.slice(0, limit),
+        sources: sources.slice(0, options.limit),
         metadata,
       },
       fork

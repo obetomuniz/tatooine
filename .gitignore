@@ -1,6 +1,7 @@
+npm-debug.log
+.DS_Store
+.cache
 node_modules/
 lib/
 coverage/
 .nyc_output/
-npm-debug.log
-.DS_Store

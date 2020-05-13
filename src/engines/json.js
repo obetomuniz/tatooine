@@ -9,15 +9,9 @@ const createResult = (result, fork) => {
   return fork ? fork(result) : result
 }
 
-const getSourcesFromJSON = async ({
-  requestOptions,
-  selectors,
-  limit,
-  metadata,
-  fork,
-}) => {
+const getSourcesFromJSON = async ({ options, selectors, metadata, fork }) => {
   try {
-    const { data } = await axios(requestOptions)
+    const { data } = await axios(options.request)
     const root = selectors.root
       ? selectors.root.split(".").reduce((o, i) => o[i], data)
       : data
@@ -36,7 +30,7 @@ const getSourcesFromJSON = async ({
 
     return createResult(
       {
-        sources: sources.slice(0, limit),
+        sources: sources.slice(0, options.limit),
         metadata,
       },
       fork

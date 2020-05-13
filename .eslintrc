@@ -9,7 +9,8 @@
     "plugin:import/recommended",
     "plugin:eslint-comments/recommended",
     "plugin:prettier/recommended",
-    "plugin:jsdoc/recommended"
+    "plugin:jsdoc/recommended",
+    "plugin:jest/recommended"
   ],
   "rules": {
     "block-scoped-var": "error",
