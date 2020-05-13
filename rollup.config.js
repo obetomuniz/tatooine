@@ -6,7 +6,7 @@ export default [
       format: "cjs",
       sourcemap: true,
     },
-    external: ["axios", "jsdom"],
+    external: ["axios", "jsdom", "puppeteer"],
   },
   {
     input: "src/index.js",
@@ -15,6 +15,6 @@ export default [
       format: "esm",
       sourcemap: true,
     },
-    external: ["axios", "jsdom"],
+    external: ["axios", "jsdom", "puppeteer"],
   },
 ]
