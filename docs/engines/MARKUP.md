@@ -21,20 +21,20 @@ const api = {
     // root: Object<String> => It allows access the markup node list that will have the data mapped.
     root: {
         // value: String => Query selector of the node list root.
-        value: ...
+        value: '...'
     },
     // selector: Object<String|Boolean> => Object key that will store the data extracted as configured
     selector: {
         // value: String => Query selector to extract content
-        value: ...,
+        value: '...',
         // prefix?: String => It allows prefix the data returned
-        prefix: ...,
+        prefix: '...',
         // suffix?: String => It allows suffix the data returned
         suffix: ...,
-        // inline?: Boolean => It format content inline or not
-        inline: ...,
+        // inline?: Boolean => It format content inline or not. Default is <true>.
+        inline: true,
         // attribute?: String => It allows fetch the data from some node attribute
-        attribute: ...,
+        attribute: '...',
     },
   },
   // metadata?: Object<Any> => It allows to pass additional data on the response

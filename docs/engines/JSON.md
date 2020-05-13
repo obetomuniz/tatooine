@@ -16,16 +16,19 @@ const api = {
   },
   // selectors: Object<Object<String>|String> => It map data list
   selectors: {
-    // root?: String => It allows config some parent JSON chain. (Use dot notation as String like `a | a.b.c`)
-    root: '...',
+    // root?: String => When needed, it allows config some root key in the JSON. Chains are allowed for deep magic mapping. E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a'
+    root: {
+      // value: String => Key of the node list root.
+      value: '...'
+    },
     // selector?: Object<String> => Object key that will store the data extracted as configured
     selector: {
-        // value: String => JSON key to extract content
-        value: ...,
+        // value: String => JSON key to extract content. Chains are allowed for deep magic mapping. E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a'
+        value: '...',
         // prefix?: String => It allows prefix the `value` returned
-        prefix: ...,
+        prefix: '...',
         // suffix?: String => It allows suffix the `value` returned
-        suffix: ...,
+        suffix: '...',
     },
   },
   // metadata?: Object<Any> => It pass additional data on the response

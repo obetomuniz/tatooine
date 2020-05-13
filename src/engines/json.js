@@ -1,10 +1,19 @@
 import axios from "axios"
 
+const getDataFromChain = (selector, data) => {
+  return selector
+    .replace(/\[|\]\.?/g, ".")
+    .split(".")
+    .filter((s) => s)
+    .reduce((acc, val) => acc && acc[val], data)
+}
+
 const getSource = (jsonObject, selector) => {
   const { value, prefix = "", suffix = "" } = selector
+  const content = getDataFromChain(value, jsonObject)
 
-  if (jsonObject[value]) {
-    return `${prefix}${jsonObject[value]}${suffix}`
+  if (content) {
+    return `${prefix}${content}${suffix}`
   }
 
   return null
@@ -16,16 +25,15 @@ const createResult = (result, fork) => {
 
 const getSourcesFromJSON = async ({ options, selectors, metadata, fork }) => {
   try {
+    const { root, ...rest } = selectors
     const { data } = await axios(options.request)
-    const root = selectors.root
-      ? selectors.root.split(".").reduce((o, i) => o[i], data)
-      : data
-    const sources = root.map((jsonObject, order) => {
+    const list = root ? getDataFromChain(root.value, data) : data
+    const sources = list.map((jsonObject, order) => {
       let source = { order }
 
-      for (const item in selectors) {
-        if (Object.prototype.hasOwnProperty.call(selectors, item)) {
-          const selector = selectors[item]
+      for (const item in rest) {
+        if (Object.prototype.hasOwnProperty.call(rest, item)) {
+          const selector = rest[item]
           const content = getSource(jsonObject, selector)
 
           if (content) {

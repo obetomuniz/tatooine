@@ -84,9 +84,14 @@ const staticFile = {
     limit: 5,
   },
   selectors: {
-    root: "events",
+    root: {
+      value: "events",
+    },
     name: {
       value: "name",
+    },
+    local: {
+      value: "local.name",
     },
   },
   metadata: {
@@ -108,4 +113,7 @@ const invalidMarkup = {
   },
 }
 
-export default [scraping, rss, api, staticFile, invalidJSON, invalidMarkup]
+export default {
+  valid: [scraping, rss, api, staticFile],
+  invalid: [invalidJSON, invalidMarkup],
+}
