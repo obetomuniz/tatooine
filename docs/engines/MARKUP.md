@@ -4,9 +4,9 @@
 const api = {
   // engine: String => Engine identifier
   engine: "markup",
-  // options: Object<Object<AxiosConfig?|Object<Boolean>|Object<String>>JSDOMConfig>|Integer> => Engine options
+  // options: Object<Object<AxiosConfig?|String|Object?>|JSDOM?|Integer?> => Engine options
   options: {
-    // request: Object<AxiosConfig?|Object<Boolean>|Object<String>> => It allows configure markup request. Non-spa allows any 'axios' config.
+    // request: Object<AxiosConfig?|String|Object?> => It allows configure markup request. Non-SPA allows Axios settings.
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
@@ -18,7 +18,7 @@ const api = {
           onPageLoaded: (page) => ...,
         },
     },
-    // dom?: Object<JSDOMConfig> => Any 'jsdom' allowed config
+    // dom?: Object<JSDOMConfig> => Any JSDOM allowed config
     dom: { ... },
     // limit?: Integer => It limits results returned
     limit: 5,
