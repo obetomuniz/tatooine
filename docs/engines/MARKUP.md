@@ -8,10 +8,15 @@ const api = {
   options: {
     // request: Object<AxiosConfig?|Object<Boolean>|Object<String>> => It allows configure markup request. Non-spa allows any 'axios' config.
     request: {
-        // spa?: Boolean => Set this schema as a SPA resource (It will use Puppeteer for request, which is slower). Default is <false>
-        spa: false,
         // url: String => URL that should be loaded
         url: "https://...",
+        // spa?: Object<Boolean|Function> => Set this schema as a SPA resource
+        spa: {
+          // enable: Boolean => It will enable Puppeteer for the given schema, which is slower, but powerful. Default is <false>
+          enable: false,
+          // onPageLoaded?: Function => It allows user to control page crawled using Puppeteer 'page' settings
+          onPageLoaded: (page) => ...,
+        },
     },
     // dom?: Object<JSDOMConfig> => Any 'jsdom' allowed config
     dom: { ... },
@@ -53,7 +58,7 @@ const api = {
 
 import Tatooine from "tatooine"
 
-const scraping = {
+const markup = {
   engine: "markup",
   options: {
     request: {
@@ -80,33 +85,7 @@ const scraping = {
   },
 }
 
-const rss = {
-  engine: "markup",
-  options: {
-    request: {
-      url: "https://www.smashingmagazine.com/feed",
-    },
-    dom: {
-      contentType: "text/xml",
-    },
-  },
-  selectors: {
-    root: {
-      value: "channel item",
-    },
-    title: {
-      value: "title",
-    },
-    url: {
-      value: "link",
-    },
-  },
-  metadata: {
-    name: "Smashing Magazine",
-  },
-}
-
-const schemas = [scraping, rss]
+const schemas = [markup]
 
 Tatooine(schemas).then(...)
 ```

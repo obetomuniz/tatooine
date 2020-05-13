@@ -1,9 +1,34 @@
+const spa = {
+  engine: "markup",
+  options: {
+    request: {
+      url: "https://davidwalsh.name/demo/lazyload-2.0.php",
+      spa: {
+        enable: true,
+        onPageLoaded: () => null,
+      },
+    },
+  },
+  selectors: {
+    root: {
+      value: ".Schemademo-wrapper table tr",
+    },
+    src: {
+      value: ".image img",
+      attribute: "src",
+      prefix: "https:",
+    },
+  },
+  metadata: {
+    name: "SPA Demo",
+  },
+}
+
 const scraping = {
   engine: "markup",
   options: {
     request: {
       url: "https://github.com/trending/javascript",
-      spa: true,
     },
     limit: 5,
   },
@@ -146,14 +171,14 @@ const invalidMarkupNodes = {
   },
 }
 
-const invalidJSON = {
+const invalidJSONSchema = {
   engine: "json",
   metadata: {
     name: "Invalid JSON Engine",
   },
 }
 
-const invalidMarkup = {
+const invalidMarkupSchema = {
   engine: "markup",
   metadata: {
     name: "Invalid Markup Engine",
@@ -161,6 +186,14 @@ const invalidMarkup = {
 }
 
 export default {
-  valid: [scraping, rss, api, staticFile, invalidJSONKeys, invalidMarkupNodes],
-  invalid: [invalidJSON, invalidMarkup],
+  valid: [
+    spa,
+    scraping,
+    rss,
+    api,
+    staticFile,
+    invalidJSONKeys,
+    invalidMarkupNodes,
+  ],
+  invalid: [invalidJSONSchema, invalidMarkupSchema],
 }

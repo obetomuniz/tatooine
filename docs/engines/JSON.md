@@ -45,7 +45,7 @@ const api = {
 
 import Tatooine from "tatooine"
 
-const api = {
+const json = {
   engine: "json",
   options: {
     request: {
@@ -66,7 +66,7 @@ const api = {
   },
 }
 
-const schemas = [api]
+const schemas = [json]
 
 Tatooine(schemas).then(...)
 ```

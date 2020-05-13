@@ -28,14 +28,13 @@ const getSourcesFromJSON = async ({ options, selectors, metadata, fork }) => {
     const { root, ...rest } = selectors
     const { data } = await axios(options.request)
     const list = root ? getDataFromChain(root.value, data) : data
-    const sources = list.map((jsonObject, order) => {
-      let source = { order }
+    const sources = list.map((jsonObject) => {
+      let source = {}
 
       for (const item in rest) {
         if (Object.prototype.hasOwnProperty.call(rest, item)) {
           const selector = rest[item]
           const content = getSource(jsonObject, selector)
-
           if (content) {
             source[item] = content
           }

@@ -2,12 +2,17 @@ import jsdom from "jsdom"
 import axios from "axios"
 import puppeteer from "puppeteer"
 
-const createRequest = async ({ spa = false, ...rest }) => {
-  if (spa) {
+const createRequest = async ({ spa = { enable: false }, ...rest }) => {
+  if (spa.enable) {
     const { url } = rest
     const browser = await puppeteer.launch(rest)
     const page = await browser.newPage()
     await page.goto(url)
+
+    if (spa.onPageLoaded) {
+      await spa.onPageLoaded(page)
+    }
+
     const content = await page.content()
 
     await browser.close()
@@ -32,11 +37,11 @@ const inlineText = (text, parse) => {
 
 const getSource = (node, selector) => {
   const { value, attribute, prefix = "", suffix = "", inline = true } = selector
-
+  const el = node.querySelector(value)
   if (attribute) {
-    if (node.querySelector(value)) {
+    if (el) {
       return `${prefix}${inlineText(
-        node.querySelector(value).getAttribute(attribute),
+        el.getAttribute(attribute),
         inline
       )}${suffix}`
     } else {
@@ -44,11 +49,8 @@ const getSource = (node, selector) => {
     }
   }
 
-  if (node.querySelector(value)) {
-    return `${prefix}${inlineText(
-      node.querySelector(value).textContent,
-      inline
-    )}${suffix}`
+  if (el) {
+    return `${prefix}${inlineText(el.textContent, inline)}${suffix}`
   }
 
   return null
@@ -67,8 +69,8 @@ const getSourcesFromMarkup = async ({ options, selectors, metadata, fork }) => {
     const nodeList = doc.querySelectorAll(root.value)
     let sources = []
 
-    nodeList.forEach((node, order) => {
-      let source = { order }
+    nodeList.forEach((node) => {
+      let source = {}
 
       for (const item in rest) {
         if (Object.prototype.hasOwnProperty.call(rest, item)) {
