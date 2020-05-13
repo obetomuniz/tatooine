@@ -4,49 +4,49 @@
 const api = {
   // engine: String => Engine identifier
   engine: "markup",
-  // options: Object<Object<AxiosConfig?|String|Object?>|JSDOMConfig?|Integer?> => Engine options
+  // options: Object => Engine options
   options: {
-    // request: Object<AxiosConfig?|String|Object?> => It allows configure markup request. Non-SPA allows Axios settings.
+    // request: Object | AxiosConfig? => Allows configure markup request. Non-SPA allows Axios settings.
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
-        // spa?: Object<Boolean|Function> => Set this schema as a SPA resource
+        // spa?: Object => Set this schema as a SPA resource
         spa: {
-          // enable: Boolean => It will enable Puppeteer for the given schema, which is slower, but powerful. Default is <false>
+          // enable: Boolean => Enable Puppeteer for requests on the given schema, which is slower, but powerful. Default is <false>
           enable: false,
-          // onPageLoaded?: Function => It allows user to control page crawled using Puppeteer 'page' settings
+          // onPageLoaded?: PuppeteerPageObject => Allows control the page crawled using Puppeteer 'page' object
           onPageLoaded: (page) => ...,
         },
     },
-    // dom?: Object<JSDOMConfig> => Any JSDOM allowed config
+    // dom?: JSDOMConfig => Any JSDOM allowed config
     dom: { ... },
-    // limit?: Integer => It limits results returned
+    // limit?: Integer => Limits results returned
     limit: 5,
   },
-  // selectors: Object<Object<String>> => Use to map the selectors that contain data
+  // selectors: Object => Maps the selectors that contain data
   selectors: {
-    // root: Object<String> => It allows access the markup node list that will have the data mapped.
+    // root: Object => Allows access the markup node list that will have the data mapped.
     root: {
         // value: String => Query selector of the node list root.
         value: '...'
     },
-    // selector: Object<String|Boolean> => Object key that will store the data extracted as configured
+    // selector: Object => Object key that will store the data extracted as configured
     selector: {
         // value: String => Query selector to extract content
         value: '...',
-        // prefix?: String => It allows prefix the data returned
+        // prefix?: String => Allows prefix the data returned
         prefix: '...',
-        // suffix?: String => It allows suffix the data returned
-        suffix: ...,
-        // inline?: Boolean => It format content inline or not. Default is <true>
+        // suffix?: String => Allows suffix the data returned
+        suffix: '...',
+        // inline?: Boolean => Format content inline or not. Default is <true>
         inline: true,
-        // attribute?: String => It allows fetch the data from some node attribute
+        // attribute?: String => Allows fetch the data from some node attribute
         attribute: '...',
     },
   },
-  // metadata?: Object<Any> => It allows to pass additional data on the response
-  metadata: { ... },
-  // fork? : Function => It allows to extend engine or postprocess data returned
+  // metadata?: Any => Allows pass additional data on the response
+  metadata: ...,
+  // fork? : Function => Allows extend engine or postprocess data returned
   fork: ({ sources, metadata, error }) => ...
 }
 ```

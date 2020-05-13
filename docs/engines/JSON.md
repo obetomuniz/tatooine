@@ -4,36 +4,36 @@
 const api = {
   // engine: String => Engine identifier
   engine: "json",
-  // options: Object<Object<AxiosConfig>|Integer> => Engine options
+  // options: Object=> Engine options
   options: {
-    // request: Object<AxiosConfig> => Any Axios allowed config
+    // request: AxiosConfig => Any Axios allowed config
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
     },
-    // limit?: Integer => It limits results returned
+    // limit?: Integer => Limits results returned
     limit: 5,
   },
-  // selectors: Object<Object<String>|String> => It map data list
+  // selectors: Object => Maps data list
   selectors: {
-    // root?: String => When needed, it allows config some root key in the JSON data returned.
+    // root?: String => If needed, it allows config some root key in the JSON data returned
     root: {
-      // value: String => Key of the node list root. Use chains for deep mapping. E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a'
+      // value: StringChain => Key of the node list root. Use chains for deep mapping (E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a')
       value: '...'
     },
-    // selector?: Object<String> => Object key that will store the data extracted as configured
+    // selector?: Object => Object key that will store the data extracted as configured
     selector: {
-        // value: String => Key to extract content from list. Use chains for deep mapping. E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a'
+        // value: StringChain => Key to extract content from list. Use chains for deep mapping (E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a')
         value: '...',
-        // prefix?: String => It allows prefix the `value` returned
+        // prefix?: String => Allows prefix the `value` returned
         prefix: '...',
-        // suffix?: String => It allows suffix the `value` returned
+        // suffix?: String => Allows suffix the `value` returned
         suffix: '...',
     },
   },
-  // metadata?: Object<Any> => It pass additional data on the response
-  metadata: { ... },
-  // fork?: Function => It extend engine or postprocess data returned
+  // metadata?: Any => Allows pass additional data on the response
+  metadata: ...,
+  // fork?: Function => Allows extend engine or postprocess data returned
   fork: ({ sources, metadata, error }) => ...
 }
 ```
