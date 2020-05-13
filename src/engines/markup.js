@@ -1,5 +1,20 @@
-import axios from "axios"
 import jsdom from "jsdom"
+import puppeteer from "puppeteer"
+
+const createRequest = async ({ url, onPageLoad, ...rest }) => {
+  const browser = await puppeteer.launch(rest)
+  const page = await browser.newPage()
+  await page.goto(url)
+  const content = await page.content()
+
+  if (onPageLoad) {
+    onPageLoad({ puppeteer, browser, page, content })
+  }
+
+  await browser.close()
+
+  return content
+}
 
 const inlineText = (text, parse) => {
   if (!parse) {
@@ -42,8 +57,10 @@ const createResult = (result, fork) => {
 const getSourcesFromMarkup = async ({ options, selectors, metadata, fork }) => {
   try {
     const { root, ...rest } = selectors
-    const { data } = await axios(options.request)
-    const dom = new jsdom.JSDOM(data, options.dom)
+    const dom = new jsdom.JSDOM(
+      await createRequest(options.request),
+      options.dom
+    )
     const doc = dom.window.document
     const nodeList = doc.querySelectorAll(root.value)
     let sources = []

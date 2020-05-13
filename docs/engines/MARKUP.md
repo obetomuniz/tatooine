@@ -4,12 +4,14 @@
 const api = {
   // engine: String => Engine identifier
   engine: "markup",
-  // options: Object<Object<AxiosConfig|JSDOMConfig>|Integer> => Engine options
+  // options: Object<Object<PuppeteerConfig|JSDOMConfig>|Integer> => Engine options
   options: {
-    // request: Object<AxiosConfig> => 'axios' allowed config
+    // request: Object<PuppeteerConfig> => 'puppeteer' allowed config for `.launch()`
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
+        // onPageLoad: Function => It allows control Puppeteer enviroment after load page URL
+        onPageLoad: ({ puppeteer, browser, page, content }) => ...
     },
     // dom?: Object<JSDOMConfig> => 'jsdom' allowed config
     dom: { ... },

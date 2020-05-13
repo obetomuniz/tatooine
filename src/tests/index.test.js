@@ -11,7 +11,7 @@ describe("Tatooine", () => {
       expect(data[index].sources).toBeDefined()
       expect(data[index].error).toBeUndefined()
     }
-  })
+  }, 30000)
 
   it("should present error given invalid fixtures", async () => {
     const data = await Tatooine(schemas.invalid)
