@@ -99,6 +99,52 @@ const staticFile = {
   },
 }
 
+const invalidJSONKeys = {
+  engine: "json",
+  options: {
+    request: {
+      url:
+        "https://raw.githubusercontent.com/minasdev/eventos/master/events.json",
+    },
+    limit: 5,
+  },
+  selectors: {
+    root: {
+      value: "events",
+    },
+    xpto: {
+      value: "xpto",
+    },
+  },
+  metadata: {
+    name: "Minas Dev Eventos",
+  },
+}
+
+const invalidMarkupNodes = {
+  engine: "markup",
+  options: {
+    request: {
+      url: "https://github.com/trending/javascript",
+    },
+  },
+  selectors: {
+    root: {
+      value: "article.Box-row",
+    },
+    xpto: {
+      value: "xpto",
+    },
+    abcd: {
+      value: "abcd",
+      attribute: "xyz",
+    },
+  },
+  metadata: {
+    name: "Github Trends - JavaScript",
+  },
+}
+
 const invalidJSON = {
   engine: "json",
   metadata: {
@@ -114,6 +160,6 @@ const invalidMarkup = {
 }
 
 export default {
-  valid: [scraping, rss, api, staticFile],
+  valid: [scraping, rss, api, staticFile, invalidJSONKeys, invalidMarkupNodes],
   invalid: [invalidJSON, invalidMarkup],
 }
