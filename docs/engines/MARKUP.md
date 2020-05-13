@@ -4,9 +4,9 @@
 const api = {
   // engine: String => Engine identifier
   engine: "markup",
-  // options: Object<Object<PuppeteerConfig|JSDOMConfig>|Integer> => Engine options
+  // options: Object<Object<Object<Object<String>>|JSDOMConfig>|Integer> => Engine options
   options: {
-    // request: Object<Object<string>> => It allows configure markup request.
+    // request: Object<Object<String>> => It allows configure markup request.
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
