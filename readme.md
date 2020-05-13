@@ -14,8 +14,8 @@ $ npm install tatooine --save
 ## Documentation
 
 ```js
-// schemas          {Array} => A list of schemas following the standard and/or custom engines registered.
-// customEngines?   {Array} => Optional list of custom engines to be registered.
+// schemas: array<Schema> => A list of schemas.
+// customEngines?: array<CustomEngines> => Optional list of custom engines.
 
 const promise = Tatooine(schemas, customEngines)
 ```

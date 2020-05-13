@@ -2,45 +2,45 @@
 
 ```js
 const api = {
-  // engine | <String> => Engine identifier
+  // engine: string => Engine identifier
   engine: "markup",
-  // options | <Object> => Engine options
+  // options: object<object<AxiosConfig|JSDOMConfig>|int> => Engine options
   options: {
-    // request | <Object> => 'axios' config options
+    // request: object<AxiosConfig> => 'axios' allowed config
     request: {
-        // url | <String> => URL that should be loaded
+        // url: string => URL that should be loaded
         url: "https://...",
     },
-    // dom? | <Object> => 'jsdom' config options
+    // dom?: object<JSDOMConfig> => 'jsdom' allowed config
     dom: { ... },
-    // limit? | <Int> => Limit results returned
+    // limit?: int => It limits results returned
     limit: 5,
   },
-  // selectors | <Object<Object>> => Use to map the selectors that contain data
+  // selectors: object<object<string>> => Use to map the selectors that contain data
   selectors: {
-    // root | <Object> => Config to access markup node list that will be mapped.
+    // root: object<string> => Config to access markup node list that will be mapped.
     root: {
-        // value | <String> => Query selector that will map the node list data.
+        // value: string => Root query selector that will map a specific node list data.
         value: ...
     },
-    // selector | <Object> => Use to map data based in tag names
+    // selector: object<string|bool> => Key that will store the data extracted as configured
     selector: {
-        // value | <String> => Query selector to map data
+        // value: string => Query selector key to extract content
         value: ...,
-        // prefix? | <String> => To prefix the data returned
+        // prefix?: string => It allows prefix the data returned
         prefix: ...,
-        // suffix? | <String> => To suffix the data returned
+        // suffix?: string => It allows suffix the data returned
         suffix: ...,
-        // inline? | <Boolean> => To format content inline or not
+        // inline?: boolean => It format content inline or not
         inline: ...,
-        // attribute? | <String> => To fetch data from query selector node attribute
+        // attribute?: string => It allows fetch the data from some node attribute
         attribute: ...,
     },
   },
-  // metadata? | <Object> => Use it to pass additional data on the response
+  // metadata?: object<> => It allows to pass additional data on the response
   metadata: { ... },
-  // fork? | <Function> => Use it to extend engine or postprocess data before return
-  fork: () => ...
+  // fork? : function => It allows to extend engine or postprocess data returned
+  fork: ({ sources, metadata, error }) => ...
 }
 ```
 

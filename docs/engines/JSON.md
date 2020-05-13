@@ -2,36 +2,36 @@
 
 ```js
 const api = {
-  // engine | <String> => Engine identifier
+  // engine: string => Engine identifier
   engine: "json",
-  // options | <Object> => Engine options
+  // options: object<object<AxiosConfig>|int> => Engine options
   options: {
-    // request | <Object> => 'axios' configs
+    // request: object<AxiosConfig> => Any 'axios' configs
     request: {
-        // url | <String> => URL that should be loaded
+        // url: string => URL that should be loaded
         url: "https://...",
     },
-    // limit? | <Int> => Limit results returned
+    // limit?: int => It limits results returned
     limit: 5,
   },
-  // selectors | <Object<Object>> => It map data
+  // selectors: object<object<string>|string> => It map data list
   selectors: {
-    // root? | <String> => It allows config to access data list from some parent JSON node. (Use dot notation like `a.b.c`)
+    // root?: string => It allows config some parent JSON chain. (Use dot notation as string like `a | a.b.c`)
     root: '...',
-    // ?selector? | <Any> => It map data based in JSON node key
+    // selector?: object<string> => Key that will store the data extracted
     selector: {
-        // value | <String> => JSON node key value to map
+        // value: string => JSON key to extract content
         value: ...,
-        // prefix? | <String> => It prefix the `value` returned
+        // prefix?: string => It allows prefix the `value` returned
         prefix: ...,
-        // suffix? | <String> => It suffix the `value` returned
+        // suffix?: string => It allows suffix the `value` returned
         suffix: ...,
     },
   },
-  // metadata? | <Object> => It pass additional data on the response
+  // metadata?: object<any> => It pass additional data on the response
   metadata: { ... },
-  // fork? | <Function> => It extend engine or postprocess data before return
-  fork: () => ...
+  // fork?: function => It extend engine or postprocess data returned
+  fork: ({ sources, metadata, error }) => ...
 }
 ```
 
