@@ -15,16 +15,24 @@ const getSource = (node, selector) => {
   const { value, attribute, prefix = "", suffix = "", inline = true } = selector
 
   if (attribute) {
+    if (node.querySelector(value)) {
+      return `${prefix}${inlineText(
+        node.querySelector(value).getAttribute(attribute),
+        inline
+      )}${suffix}`
+    } else {
+      return null
+    }
+  }
+
+  if (node.querySelector(value)) {
     return `${prefix}${inlineText(
-      node.querySelector(value).getAttribute(attribute),
+      node.querySelector(value).textContent,
       inline
     )}${suffix}`
   }
 
-  return `${prefix}${inlineText(
-    node.querySelector(value).textContent,
-    inline
-  )}${suffix}`
+  return null
 }
 
 const createResult = (result, fork) => {
@@ -42,11 +50,15 @@ const getSourcesFromMarkup = async ({ options, selectors, metadata, fork }) => {
 
     nodeList.forEach((node, order) => {
       let source = { order }
+
       for (const item in rest) {
         if (Object.prototype.hasOwnProperty.call(rest, item)) {
           const selector = rest[item]
+          const content = getSource(node, selector)
 
-          source[item] = getSource(node, selector)
+          if (content) {
+            source[item] = content
+          }
         }
       }
       sources = [...sources, source]

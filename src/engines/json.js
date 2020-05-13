@@ -2,7 +2,12 @@ import axios from "axios"
 
 const getSource = (jsonObject, selector) => {
   const { value, prefix = "", suffix = "" } = selector
-  return `${prefix}${jsonObject[value]}${suffix}`
+
+  if (jsonObject[value]) {
+    return `${prefix}${jsonObject[value]}${suffix}`
+  }
+
+  return null
 }
 
 const createResult = (result, fork) => {
@@ -15,13 +20,17 @@ const getSourcesFromJSON = async ({ options, selectors, metadata, fork }) => {
     const root = selectors.root
       ? selectors.root.split(".").reduce((o, i) => o[i], data)
       : data
-    let sources = root.map((jsonObject, order) => {
+    const sources = root.map((jsonObject, order) => {
       let source = { order }
+
       for (const item in selectors) {
         if (Object.prototype.hasOwnProperty.call(selectors, item)) {
           const selector = selectors[item]
+          const content = getSource(jsonObject, selector)
 
-          source[item] = getSource(jsonObject, selector)
+          if (content) {
+            source[item] = content
+          }
         }
       }
 
