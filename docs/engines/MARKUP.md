@@ -6,14 +6,12 @@ const api = {
   engine: "markup",
   // options: Object<Object<PuppeteerConfig|JSDOMConfig>|Integer> => Engine options
   options: {
-    // request: Object<PuppeteerConfig> => 'puppeteer' allowed config for `.launch()`
+    // request: Object<Object<string>> => It allows configure markup request.
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
-        // onPageLoad: Function => It allows control Puppeteer enviroment after load page URL
-        onPageLoad: ({ puppeteer, browser, page, content }) => ...
     },
-    // dom?: Object<JSDOMConfig> => 'jsdom' allowed config
+    // dom?: Object<JSDOMConfig> => Any 'jsdom' allowed config
     dom: { ... },
     // limit?: Integer => It limits results returned
     limit: 5,

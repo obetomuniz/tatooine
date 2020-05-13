@@ -6,7 +6,7 @@ const api = {
   engine: "json",
   // options: Object<Object<AxiosConfig>|Integer> => Engine options
   options: {
-    // request: Object<AxiosConfig> => 'axios' allowed config
+    // request: Object<AxiosConfig> => Any 'axios' allowed config
     request: {
         // url: String => URL that should be loaded
         url: "https://...",

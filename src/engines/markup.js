@@ -1,15 +1,11 @@
 import jsdom from "jsdom"
 import puppeteer from "puppeteer"
 
-const createRequest = async ({ url, onPageLoad, ...rest }) => {
-  const browser = await puppeteer.launch(rest)
+const createRequest = async ({ url }) => {
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
   await page.goto(url)
   const content = await page.content()
-
-  if (onPageLoad) {
-    onPageLoad({ puppeteer, browser, page, content })
-  }
 
   await browser.close()
 
