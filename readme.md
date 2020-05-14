@@ -15,7 +15,7 @@ $ npm install tatooine --save
 
 ```js
 // schemas: Array<Schema> => A list of schemas.
-// customEngines?: Array<CustomEngines> => An optional list of custom engines.
+// customEngines?: Array<CustomEngine> => An optional list of custom engines.
 
 const promise = Tatooine(schemas, customEngines)
 ```
@@ -40,7 +40,7 @@ const schemas = [{
   engine: "json",
   options: { ... },
   selectors: { ... },
-  fork({ sources, metadata, error }) {
+  fork({ sources, error }) {
     // Do anything you want with the data provided and then;
 
     return { sources, metadata, error };
