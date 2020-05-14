@@ -6,7 +6,7 @@ const api = {
   engine: "markup",
   // options: Object => Engine options
   options: {
-    // request: Object | AxiosConfig? => Allows configure markup request. Non-SPA allows Axios settings.
+    // request: Object | AxiosConfig? => Allows configure markup request. Non-SPA allows Axios settings
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
@@ -25,14 +25,14 @@ const api = {
   },
   // selectors: Object => Maps the selectors that contain data
   selectors: {
-    // root: Object => Allows access the markup node list that will have the data mapped.
+    // root: Object => Allows access a markup HTML Node List that will have the data mapped
     root: {
-        // value: String => Query selector of the node list root.
+        // value: String => Query selector of the HTML Node List. (E.g.: 'ul li', '.articles-list article', etc.)
         value: '...'
     },
     // selector: Object => Object key that will store the data extracted as configured
     selector: {
-        // value: String => Query selector to extract content
+        // value: String => Query selector to extract content from HTML node (E.g.: 'a', 'h2.article-title', etc.)
         value: '...',
         // prefix?: String => Allows prefix the data returned
         prefix: '...',
@@ -40,7 +40,7 @@ const api = {
         suffix: '...',
         // inline?: Boolean => Format content inline or not. Default is <true>
         inline: true,
-        // attribute?: String => Allows fetch the data from some node attribute
+        // attribute?: String => Allows extract content from node attribute (E.g.: 'href', 'data-src', etc.)
         attribute: '...',
     },
   },

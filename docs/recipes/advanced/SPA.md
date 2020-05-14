@@ -2,7 +2,7 @@
 
 This recipe is demonstrating how to use Tatooine to crawling content from Single Page Applications.
 
-## Example 1: SPA with Infinite Scroll Loading
+## SPA with Infinite Scroll Loading
 
 In this example, we will use a Puppeteer Helper to force scroll the page until the content finish to be loaded in order to fetch all the available resources defined in the `selectors` field of the schema.
 

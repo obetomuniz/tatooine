@@ -18,12 +18,12 @@ const api = {
   selectors: {
     // root?: String => If needed, it allows config some root key in the JSON data returned
     root: {
-      // value: StringChain => Key of the node list root. Use chains for deep mapping (E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a')
+      // value: StringChain => Path of the list to be iterated. Use chains for deep mapping (E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a')
       value: '...'
     },
     // selector?: Object => Object key that will store the data extracted as configured
     selector: {
-        // value: StringChain => Key to extract content from list. Use chains for deep mapping (E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a')
+        // value: StringChain => Path to extract content. Use chains for deep mapping (E.g.: 'a', 'a.b.c', 'a.b.d[0]', 'x[0].a')
         value: '...',
         // prefix?: String => Allows prefix the `value` returned
         prefix: '...',
