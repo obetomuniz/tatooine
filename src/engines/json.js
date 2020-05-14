@@ -1,4 +1,5 @@
 import axios from "axios"
+import { createResult } from "../helpers/index.js"
 
 const getDataFromChain = (selector, data) => {
   return selector
@@ -17,10 +18,6 @@ const getSource = (jsonObject, selector) => {
   }
 
   return null
-}
-
-const createResult = (result, fork) => {
-  return fork ? fork(result) : result
 }
 
 const getSourcesFromJSON = async ({ options, selectors, metadata, fork }) => {

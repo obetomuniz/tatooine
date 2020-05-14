@@ -4,15 +4,18 @@ This recipe is demonstrating how to use Tatooine to crawling content from Single
 
 ## SPA with Infinite Scroll Loading
 
-In this example, we will use a Puppeteer Helper to force scroll the page until the content finish to be loaded in order to fetch all the available resources defined in the `selectors` field of the schema.
+In this example, we will use a helper to force scroll the page until the content finish to be loaded in order to fetch all the available resources defined in the `selectors` field of the schema.
+
+**Note:**
 
 ```js
 // index.js
 
 import Tatooine from "tatooine"
 
-const puppeteerAutoScrollHelper = async (page) => {
-  await page.evaluate(async () => {
+// Force scroll down the page until the content finish to be loaded
+const autoScrollHelper = async (page) => {
+  await page.evaluate(async () => { // More info about: https://pptr.dev/#?product=Puppeteer&show=api-pageevaluatepagefunction-args
     await new Promise((resolve) => {
       const distance = 100
       let totalHeight = 0
@@ -31,14 +34,13 @@ const puppeteerAutoScrollHelper = async (page) => {
 }
 
 const spa = {
-  engine: "markup",
+  engine: "spa",
   options: {
     request: {
       url: "https://davidwalsh.name/demo/lazyload-2.0.php",
-      spa: {
-        enable: true,
-        onPageLoaded: async (page) => await puppeteerAutoScrollHelper(page),
-      },
+      events: {
+        onPageLoad: async (page) => await autoScrollHelper(page),
+      }
     },
   },
   selectors: {

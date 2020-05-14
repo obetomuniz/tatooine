@@ -1,5 +1,6 @@
-import markupEngine from "./engines/markup.js"
 import JSONEngine from "./engines/json.js"
+import markupEngine from "./engines/markup.js"
+import SPAEngine from "./engines/spa.js"
 
 /**
  * @param {Array<object>} schemas A list of schemas following the default and/or custom engines registered.
@@ -7,7 +8,7 @@ import JSONEngine from "./engines/json.js"
  * @return {Promise} Returns a promise with data sources.
  */
 const Tatooine = (schemas, customEngines = []) => {
-  const engines = [JSONEngine, markupEngine, ...customEngines]
+  const engines = [JSONEngine, markupEngine, SPAEngine, ...customEngines]
   let sources = []
 
   schemas.map((schema) => {

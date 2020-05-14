@@ -1,5 +1,5 @@
-import Tatooine from "../index.js"
-import schemas from "../../devtools/jest/fixtures"
+import Tatooine from "../src/index.js"
+import schemas from "./fixtures"
 
 describe("Tatooine", () => {
   it("should load given fixtures", async () => {
@@ -16,7 +16,7 @@ describe("Tatooine", () => {
   it("should present error given invalid fixtures", async () => {
     const data = await Tatooine(schemas.invalid)
 
-    expect(data).toHaveLength(2)
+    expect(data).toHaveLength(3)
     for (let index = 0; index < data.length; index++) {
       expect(data[index].error).toBeDefined()
     }

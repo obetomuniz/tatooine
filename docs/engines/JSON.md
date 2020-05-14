@@ -6,7 +6,7 @@ const api = {
   engine: "json",
   // options: Object=> Engine options
   options: {
-    // request: AxiosConfig => Any Axios allowed config
+    // request: Object => Allows any Axios configs.
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
@@ -34,7 +34,7 @@ const api = {
   // metadata?: Any => Allows pass additional data on the response
   metadata: ...,
   // fork?: Function => Allows extend engine or postprocess data returned
-  fork: ({ sources, metadata, error }) => ...
+  fork: ({ sources, error }) => ...
 }
 ```
 

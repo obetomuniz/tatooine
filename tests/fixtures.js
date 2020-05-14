@@ -1,11 +1,13 @@
 const spa = {
-  engine: "markup",
+  engine: "spa",
   options: {
     request: {
       url: "https://davidwalsh.name/demo/lazyload-2.0.php",
-      spa: {
-        enable: true,
-        onPageLoaded: () => null,
+      events: {
+        onBrowserLoad: () => null,
+        willPageLoad: () => null,
+        onPageLoad: () => null,
+        onContentLoad: () => null,
       },
     },
   },
@@ -185,6 +187,13 @@ const invalidMarkupSchema = {
   },
 }
 
+const invalidSPASchema = {
+  engine: "spa",
+  metadata: {
+    name: "Invalid Markup Engine",
+  },
+}
+
 export default {
   valid: [
     spa,
@@ -195,5 +204,5 @@ export default {
     invalidJSONKeys,
     invalidMarkupNodes,
   ],
-  invalid: [invalidJSONSchema, invalidMarkupSchema],
+  invalid: [invalidJSONSchema, invalidMarkupSchema, invalidSPASchema],
 }

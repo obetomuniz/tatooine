@@ -1,15 +1,26 @@
-# Markup Engine
+# SPA Engine
 
 ```js
 const api = {
   // engine: String => Engine identifier
-  engine: "markup",
+  engine: "spa",
   // options: Object => Engine options
   options: {
-    // request: Object => Allows any Axios configs.
+    // request: Object => Configures SPA request. Allows any Puppeteer configs too.
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
+        // events?: Object => Request events
+        events: {
+          // onBrowserLoad?: Function => Allows control PuppeteerBrowserClass before create a new page.
+          onBrowserLoad: (browser) => ...,
+          // willPageLoad?: Function => Allows control PuppeteerPageClass before load URL.
+          willPageLoad: (page) => ...,
+          // onPageLoad?: Function => Allows control PuppeteerPageClass after load URL.
+          onPageLoad: (page) => ...,
+          // onContentLoad?: Function => Allows control PuppeteerPageClass and content string loaded.
+          onContentLoad: (content, page) => ...,
+        },
         ...
     },
     // dom?: JSDOMConfig => Any JSDOM allowed config
@@ -19,7 +30,7 @@ const api = {
   },
   // selectors: Object => Maps the selectors that contain data
   selectors: {
-    // root: Object => Allows access a markup HTML Node List that will have the data mapped
+    // root: Object => Allows access a HTML Node List that will have the data mapped
     root: {
         // value: String => Query selector of the HTML Node List. (E.g.: 'ul li', '.articles-list article', etc.)
         value: '...'
@@ -52,34 +63,29 @@ const api = {
 
 import Tatooine from "tatooine"
 
-const markup = {
-  engine: "markup",
+const spa = {
+  engine: "spa",
   options: {
     request: {
-      url: "https://github.com/trending/javascript",
+      url: "https://davidwalsh.name/demo/lazyload-2.0.php",
     },
-    limit: 5,
   },
   selectors: {
     root: {
-      value: "article.Box-row",
+      value: ".demo-wrapper table tr",
     },
-    title: {
-      value: "h1 a",
-      inline: true,
-    },
-    url: {
-      value: "h1 a",
-      attribute: "href",
-      prefix: "https://github.com",
+    src: {
+      value: ".image img",
+      attribute: "src",
+      prefix: "https:",
     },
   },
   metadata: {
-    name: "Github Trends - JavaScript",
+    name: "SPA Demo",
   },
 }
 
-const schemas = [markup]
+const schemas = [spa]
 
 Tatooine(schemas).then(...)
 ```
