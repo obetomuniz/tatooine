@@ -5,7 +5,7 @@ describe("Tatooine", () => {
   it("should load given fixtures", async () => {
     const data = await Tatooine(schemas.valid)
 
-    expect(data).toHaveLength(7)
+    expect(data).toHaveLength(8)
     for (let index = 0; index < data.length; index++) {
       expect(data[index].metadata).toBeDefined()
       expect(data[index].sources).toBeDefined()

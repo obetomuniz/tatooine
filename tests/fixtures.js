@@ -149,7 +149,7 @@ const invalidJSONKeys = {
   },
 }
 
-const invalidMarkupNodes = {
+const invalidMarkupQuerySelectors = {
   engine: "markup",
   options: {
     request: {
@@ -173,24 +173,48 @@ const invalidMarkupNodes = {
   },
 }
 
+const invalidSPAQuerySelectors = {
+  engine: "spa",
+  options: {
+    request: {
+      url: "https://davidwalsh.name/demo/lazyload-2.0.php",
+    },
+  },
+  selectors: {
+    root: {
+      value: "article.Box-row",
+    },
+    xpto: {
+      value: "xpto",
+    },
+    abcd: {
+      value: "abcd",
+      attribute: "xyz",
+    },
+  },
+  metadata: {
+    name: "SPA Demo",
+  },
+}
+
 const invalidJSONSchema = {
   engine: "json",
   metadata: {
-    name: "Invalid JSON Engine",
+    name: "Invalid JSON Schema",
   },
 }
 
 const invalidMarkupSchema = {
   engine: "markup",
   metadata: {
-    name: "Invalid Markup Engine",
+    name: "Invalid Markup Schema",
   },
 }
 
 const invalidSPASchema = {
   engine: "spa",
   metadata: {
-    name: "Invalid Markup Engine",
+    name: "Invalid SPA Schema",
   },
 }
 
@@ -202,7 +226,8 @@ export default {
     api,
     staticFile,
     invalidJSONKeys,
-    invalidMarkupNodes,
+    invalidMarkupQuerySelectors,
+    invalidSPAQuerySelectors,
   ],
   invalid: [invalidJSONSchema, invalidMarkupSchema, invalidSPASchema],
 }
