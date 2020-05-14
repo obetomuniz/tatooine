@@ -43,7 +43,7 @@ const schemas = [{
   fork({ sources, error }) {
     // Do anything you want with the data provided and then;
 
-    return { sources, metadata, error };
+    return { sources, error };
   }
 }]
 
