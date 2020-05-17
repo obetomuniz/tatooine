@@ -6,24 +6,12 @@ const api = {
   engine: "spa",
   // options: Object => Engine options
   options: {
-    // request: Object => Configures SPA request. Allows any Puppeteer configs too.
+    // request: Object => Configures SPA request.
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
-        // events?: Object => Request events
-        events: {
-          // onBrowserLoad?: Function => Allows control PuppeteerBrowserClass before create a new page.
-          onBrowserLoad: (browser) => ...,
-          // willPageLoad?: Function => Allows control PuppeteerPageClass before load URL.
-          willPageLoad: (page) => ...,
-          // onPageLoad?: Function => Allows control PuppeteerPageClass after load URL.
-          onPageLoad: (page) => ...,
-          // onContentLoad?: Function => Allows control PuppeteerPageClass and content string loaded.
-          onContentLoad: (content, page) => ...,
-        },
-        ...
     },
-    // dom?: JSDOMConfig => Any JSDOM allowed config
+    // dom?: JSDOMConfig => Any JSDOM allowed config. More info https://github.com/jsdom/jsdom#customizing-jsdom
     dom: { ... },
     // limit?: Integer => Limits results returned
     limit: 5,

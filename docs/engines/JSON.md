@@ -6,7 +6,7 @@ const api = {
   engine: "json",
   // options: Object=> Engine options
   options: {
-    // request: Object => Allows any Axios configs.
+    // request: Object => Allows any Axios configs. More info https://github.com/axios/axios#axios-api
     request: {
         // url: String => URL that should be loaded
         url: "https://...",

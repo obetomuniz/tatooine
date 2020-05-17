@@ -3,12 +3,6 @@ const spa = {
   options: {
     request: {
       url: "https://davidwalsh.name/demo/lazyload-2.0.php",
-      events: {
-        onBrowserLoad: () => null,
-        willPageLoad: () => null,
-        onPageLoad: () => null,
-        onContentLoad: () => null,
-      },
     },
   },
   selectors: {

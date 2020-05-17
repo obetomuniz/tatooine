@@ -6,13 +6,13 @@ const api = {
   engine: "markup",
   // options: Object => Engine options
   options: {
-    // request: Object => Allows any Axios configs.
+    // request: Object => Allows any Axios configs. More info https://github.com/axios/axios#axios-api
     request: {
         // url: String => URL that should be loaded
         url: "https://...",
         ...
     },
-    // dom?: JSDOMConfig => Any JSDOM allowed config
+    // dom?: JSDOMConfig => Any JSDOM allowed config. More info https://github.com/jsdom/jsdom#customizing-jsdom
     dom: { ... },
     // limit?: Integer => Limits results returned
     limit: 5,

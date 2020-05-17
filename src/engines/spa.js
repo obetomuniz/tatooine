@@ -5,31 +5,36 @@ import {
   createResult,
 } from "../helpers/index.js"
 
-const createRequest = async ({ url, events = {}, ...rest }) => {
-  const browser = await puppeteer.launch(rest)
-  const { onBrowserLoad, willPageLoad, onPageLoad, onContentLoad } = events
+// Force scroll down the page until the content finish to be loaded
+const autoScroll = async (page) => {
+  /* istanbul ignore next */ // TODO: Improve this test
+  await page.evaluate(async () => {
+    await new Promise((resolve) => {
+      let totalHeight = 0
+      let distance = 100
+      let timer = setInterval(() => {
+        let scrollHeight = document.body.scrollHeight
+        window.scrollBy(0, distance)
+        totalHeight += distance
+        if (totalHeight >= scrollHeight) {
+          clearInterval(timer)
+          resolve()
+        }
+      }, 100)
+    })
+  })
+}
 
-  if (onBrowserLoad) {
-    await onBrowserLoad(browser)
-  }
+const createRequest = async ({ url }) => {
+  const browser = await puppeteer.launch()
 
   const page = await browser.newPage()
 
-  if (willPageLoad) {
-    await willPageLoad(page)
-  }
-
   await page.goto(url)
 
-  if (onPageLoad) {
-    await onPageLoad(page)
-  }
+  await autoScroll(page)
 
   const content = await page.content()
-
-  if (onContentLoad) {
-    await onContentLoad(content, page)
-  }
 
   await browser.close()
 
