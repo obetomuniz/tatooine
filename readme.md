@@ -30,7 +30,7 @@ For convenience, Tatooine provide you with three useful standard engines.
 
 ### Extending Standard Engines
 
-The `fork` property allows extends the engine capabilities for your needs while creating schemas for the standard engines `json` or `markup`.
+The `fork` property allows extends the engine capabilities for your needs while creating schemas for the standard engines `spa`, `json` and/or `markup`.
 
 ```js
 // index.js
@@ -71,12 +71,12 @@ export default {
 ```
 
 ```js
-// schemas.js
+// xyz-schema.js
 
-export default [{
+export default {
   engine: "xyz",
   ...
-}];
+};
 ```
 
 ```js
@@ -85,14 +85,13 @@ export default [{
 import Tatooine from "tatooine"
 
 import xyzEngine from "./xyz-engine.js"
-import schemas from "./schemas.js"
+import xyzSchema from "./xyz-schema.js"
 
-const promise = Tatooine(schemas, [xyzEngine])
+const promise = Tatooine([xyzSchema], [xyzEngine])
 ```
 
 ## Examples
 
 And there is much more, take a look at some recipes below. We will be adding more and more examples as needed. PRs are welcomed 😁.
 
-- [SPA](https://github.com/obetomuniz/tatooine/tree/master/docs/recipes/advanced/SPA.md)
 - [XML](https://github.com/obetomuniz/tatooine/tree/master/docs/recipes/simple/XML.md)

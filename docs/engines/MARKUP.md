@@ -1,19 +1,22 @@
 # Markup Engine
 
+Markup Engine is useful for SSR pages, Static HTML documents, RSS Feeds, etc. The main difference between this engine and SPA Engine is performance. Markup Engine have more performance, but less powerful for async content.
+
 ```js
 const api = {
   // engine: String => Engine identifier
   engine: "markup",
   // options: Object => Engine options
   options: {
-    // request: Object => Allows any Axios configs. More info https://github.com/axios/axios#axios-api
+    // request: Object => Request settings
     request: {
-        // url: String => URL that should be loaded
-        url: "https://...",
-        ...
+      // url: String => URL that should be requested
+      url: "https://...",
+      // headers?: Object => Request headers
+      headers: ...,
     },
-    // dom?: JSDOMConfig => Any JSDOM allowed config. More info https://github.com/jsdom/jsdom#customizing-jsdom
-    dom: { ... },
+    // xml?: Flag if the content is XML or not. Default is <false>
+    xml: false,
     // limit?: Integer => Limits results returned
     limit: 5,
   },
@@ -55,9 +58,7 @@ import Tatooine from "tatooine"
 const markup = {
   engine: "markup",
   options: {
-    request: {
-      url: "https://github.com/trending/javascript",
-    },
+    url: "https://github.com/trending/javascript",
     limit: 5,
   },
   selectors: {

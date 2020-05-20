@@ -8,13 +8,20 @@ import {
 const getSourcesFromMarkup = async ({ options, selectors, metadata, fork }) => {
   try {
     const { root, ...rest } = selectors
-    const { data } = await axios(options.request)
-    const nodeList = getNodeListFromSelector(data, root, options.dom)
+    const {
+      request: { url, headers },
+      xml = false,
+      limit,
+    } = options
+    const { data } = await axios({ url, headers })
+    const nodeList = getNodeListFromSelector(data, root, {
+      contentType: xml ? "text/xml" : "text/html",
+    })
     const sources = getSourcesFromNodeList(nodeList, rest)
 
     return createResult(
       {
-        sources: sources.slice(0, options.limit),
+        sources: sources.slice(0, limit),
         metadata,
       },
       fork

@@ -6,5 +6,5 @@
  * @return {object} Return the final result
  */
 export default (result, fork) => {
-  return fork ? fork(result) : result
+  return fork ? { ...result, ...fork(result) } : result
 }

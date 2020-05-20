@@ -1,4 +1,4 @@
-import inlineTextFormat from "./inlineTextFormat.js"
+import inlineTextFormat from "../common/inlineTextFormat.js"
 
 /**
  * This extract content from a HTMLElement node

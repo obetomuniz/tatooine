@@ -1,15 +1,19 @@
 # JSON Engine
 
+JSON Engine is useful for APIs, Static JSON files, Raw JSON, etc.
+
 ```js
 const api = {
   // engine: String => Engine identifier
   engine: "json",
   // options: Object=> Engine options
   options: {
-    // request: Object => Allows any Axios configs. More info https://github.com/axios/axios#axios-api
+    // request: Object => Request settings
     request: {
-        // url: String => URL that should be loaded
-        url: "https://...",
+      // url: String => URL that should be requested
+      url: "https://...",
+      // headers?: Object => Request headers
+      headers: ...,
     },
     // limit?: Integer => Limits results returned
     limit: 5,
@@ -48,9 +52,7 @@ import Tatooine from "tatooine"
 const json = {
   engine: "json",
   options: {
-    request: {
-      url: "https://jsonplaceholder.typicode.com/photos",
-    },
+    url: "https://jsonplaceholder.typicode.com/photos",
     limit: 5,
   },
   selectors: {

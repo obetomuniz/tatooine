@@ -1,49 +1,35 @@
 import axios from "axios"
-import { createResult } from "../helpers/index.js"
+import {
+  getJSONContentFromChain,
+  getSourcesFromJSON,
+  createResult,
+} from "../helpers/index.js"
 
-const getDataFromChain = (selector, data) => {
-  return selector
-    .replace(/\[|\]\.?/g, ".")
-    .split(".")
-    .filter((s) => s)
-    .reduce((acc, val) => acc && acc[val], data)
-}
-
-const getSource = (jsonObject, selector) => {
-  const { value, prefix = "", suffix = "" } = selector
-  const content = getDataFromChain(value, jsonObject)
-
-  if (content) {
-    return `${prefix}${content}${suffix}`
-  }
-
-  return null
-}
-
-const getSourcesFromJSON = async ({ options, selectors, metadata, fork }) => {
+const getSourcesFromJSONObject = async ({
+  options,
+  selectors,
+  metadata,
+  fork,
+}) => {
   try {
     const { root, ...rest } = selectors
-    const { data } = await axios(options.request)
-    const list = root ? getDataFromChain(root.value, data) : data
-    const sources = list.map((jsonObject) => {
-      let source = {}
-
-      for (const item in rest) {
-        if (Object.prototype.hasOwnProperty.call(rest, item)) {
-          const selector = rest[item]
-          const content = getSource(jsonObject, selector)
-          if (content) {
-            source[item] = content
-          }
-        }
-      }
-
-      return source
+    const {
+      request: { url, headers = {} },
+      limit,
+    } = options
+    const { data } = await axios({
+      url,
+      headers: {
+        "user-agent": "node.js",
+        ...headers,
+      },
     })
+    const list = root ? getJSONContentFromChain(root.value, data) : data
+    const sources = getSourcesFromJSON(list, rest)
 
     return createResult(
       {
-        sources: sources.slice(0, options.limit),
+        sources: sources.slice(0, limit),
         metadata,
       },
       fork
@@ -62,5 +48,5 @@ const getSourcesFromJSON = async ({ options, selectors, metadata, fork }) => {
 
 export default {
   engine: "json",
-  run: getSourcesFromJSON,
+  run: getSourcesFromJSONObject,
 }

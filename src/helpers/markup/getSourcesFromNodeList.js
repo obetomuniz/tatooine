@@ -1,4 +1,4 @@
-import getSourceContent from "./getSourceContent.js"
+import getNodeContent from "./getNodeContent.js"
 
 /**
  * This extract sources from a given NodeList of HTMLElement items
@@ -16,7 +16,7 @@ export default (nodeList, keys) => {
     for (const key in keys) {
       if (Object.prototype.hasOwnProperty.call(keys, key)) {
         const selector = keys[key]
-        const content = getSourceContent(node, selector)
+        const content = getNodeContent(node, selector)
 
         if (content) {
           source[key] = content

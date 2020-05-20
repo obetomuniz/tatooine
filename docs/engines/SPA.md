@@ -1,18 +1,18 @@
 # SPA Engine
 
+SPA Engine is useful for Single Page Applications, Pages with Dynamic Injections of HTML content, etc. The main difference between this engine and Markup Engine is performance. SPA Engine have less performance, but powerful for async content.
+
 ```js
 const api = {
   // engine: String => Engine identifier
   engine: "spa",
   // options: Object => Engine options
   options: {
-    // request: Object => Configures SPA request.
+    // request: Object => Request settings
     request: {
-        // url: String => URL that should be loaded
-        url: "https://...",
+      // url: String => URL that should be requested
+      url: "https://...",
     },
-    // dom?: JSDOMConfig => Any JSDOM allowed config. More info https://github.com/jsdom/jsdom#customizing-jsdom
-    dom: { ... },
     // limit?: Integer => Limits results returned
     limit: 5,
   },
@@ -54,9 +54,7 @@ import Tatooine from "tatooine"
 const spa = {
   engine: "spa",
   options: {
-    request: {
-      url: "https://davidwalsh.name/demo/lazyload-2.0.php",
-    },
+    url: "https://davidwalsh.name/demo/lazyload-2.0.php",
   },
   selectors: {
     root: {

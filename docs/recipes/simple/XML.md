@@ -1,10 +1,10 @@
 # RSS Recipes
 
-This recipe is demonstrating how to use Tatooine to crawling content from XML
+This recipe is demonstrating how to use Tatooine to crawling content from a XML source
 
 ## Newsfeed RSS
 
-In this example, we are fetching the data from a given RSS source. Note the we are using the explicit `contentType` flag to enable the JSDOM XML parsing mode.
+In this example, we are fetching the data from a given RSS source.
 
 ```js
 // index.js
@@ -14,12 +14,8 @@ import Tatooine from "tatooine"
 const rss = {
   engine: "markup",
   options: {
-    request: {
-      url: "https://www.smashingmagazine.com/feed",
-    },
-    dom: {
-      contentType: "text/xml",
-    },
+    url: "https://www.smashingmagazine.com/feed",
+    xml: true,
   },
   selectors: {
     root: {

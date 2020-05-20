@@ -82,6 +82,7 @@
   },
   "settings": {
     "jsdoc": {
+      "preferredTypes": ["PuppeteerPageClass"],
       "tagNamePreference": {
         "returns": "return",
         "yields": "yield"

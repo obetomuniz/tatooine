@@ -53,9 +53,7 @@ const rss = {
     request: {
       url: "https://www.smashingmagazine.com/feed",
     },
-    dom: {
-      contentType: "text/xml",
-    },
+    xml: true,
   },
   selectors: {
     root: {
