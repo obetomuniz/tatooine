@@ -73,5 +73,5 @@ const spa = {
 
 const schemas = [spa]
 
-Tatooine(schemas).then(...)
+Tatooine(schemas).then(([{ sources, metadata, error }, ...]) => ...)
 ```

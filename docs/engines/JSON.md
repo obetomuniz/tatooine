@@ -70,5 +70,5 @@ const json = {
 
 const schemas = [json]
 
-Tatooine(schemas).then(...)
+Tatooine(schemas).then(([{ sources, metadata, error }, ...]) => ...)
 ```

@@ -33,5 +33,5 @@ const rss = {
   },
 }
 
-Tatooine([rss]).then(...)
+Tatooine([rss]).then(([{ sources, metadata, error }, ...]) => ...)
 ```

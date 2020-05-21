@@ -82,5 +82,5 @@ const markup = {
 
 const schemas = [markup]
 
-Tatooine(schemas).then(...)
+Tatooine(schemas).then(([{ sources, metadata, error }, ...]) => ...)
 ```
