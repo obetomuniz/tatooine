@@ -89,9 +89,3 @@ import xyzSchema from "./xyz-schema.js"
 
 const promise = Tatooine([xyzSchema], [xyzEngine])
 ```
-
-## Examples
-
-And there is much more, take a look at some recipes below. We will be adding more and more examples as needed. PRs are welcomed 😁.
-
-- [XML](https://github.com/obetomuniz/tatooine/tree/master/docs/recipes/simple/XML.md)

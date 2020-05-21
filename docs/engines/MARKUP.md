@@ -80,7 +80,31 @@ const markup = {
   },
 }
 
-const schemas = [markup]
+const rss = {
+  engine: "markup",
+  options: {
+    url: "https://www.smashingmagazine.com/feed",
+    xml: true,
+  },
+  selectors: {
+    root: {
+      value: "channel item",
+    },
+    title: {
+      value: "title",
+    },
+    url: {
+      value: "link",
+    },
+  },
+  metadata: {
+    name: "Smashing Magazine",
+  },
+}
 
-Tatooine(schemas).then(([{ sources, metadata, error }, ...]) => ...)
+const schemas = [markup, rss]
+
+Tatooine(schemas).then(([markupSources, rssSources]) => {
+  // Do anything you want with the data extracted.
+})
 ```

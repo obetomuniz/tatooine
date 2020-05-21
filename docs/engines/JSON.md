@@ -70,5 +70,7 @@ const json = {
 
 const schemas = [json]
 
-Tatooine(schemas).then(([{ sources, metadata, error }, ...]) => ...)
+Tatooine(schemas).then(([{ sources, metadata, error }]) => {
+  // Do anything you want with the data extracted.
+})
 ```
