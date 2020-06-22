@@ -99,7 +99,7 @@ const staticFile = {
   options: {
     request: {
       url:
-        "https://raw.githubusercontent.com/minasdev/eventos/master/events.json",
+        "https://raw.githubusercontent.com/minasdev/eventos/b6e215d44ab4760613c7ba80ffbc98167643b7d6/events.json",
     },
     limit: 5,
   },
@@ -124,7 +124,7 @@ const invalidJSONKeys = {
   options: {
     request: {
       url:
-        "https://raw.githubusercontent.com/minasdev/eventos/master/events.json",
+        "https://raw.githubusercontent.com/minasdev/eventos/b6e215d44ab4760613c7ba80ffbc98167643b7d6/events.json",
     },
     limit: 5,
   },
