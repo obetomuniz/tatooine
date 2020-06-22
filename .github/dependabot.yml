@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      weekly: weekly
+      interval: weekly
       day: "monday"
     labels:
       - "dependencies"
