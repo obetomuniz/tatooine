@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      weekly: weekly
+      day: "monday"
+    labels:
+      - "dependencies"
+    pull-request-branch-name:
+      separator: "-"
+    assignees:
+      - "obetomuniz"
+    allow:
+      - dependency-type: "direct"
+    rebase-strategy: "disabled"
