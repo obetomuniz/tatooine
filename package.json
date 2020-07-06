@@ -17,7 +17,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "jsdom": "^16.2.2",
-    "puppeteer": "^4.0.0"
+    "puppeteer": "^5.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.6",
