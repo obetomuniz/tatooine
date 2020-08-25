@@ -51,7 +51,7 @@ const rss = {
   engine: "markup",
   options: {
     request: {
-      url: "https://www.smashingmagazine.com/feed",
+      url: "https://betomuniz.com/rss.xml",
     },
     xml: true,
   },
@@ -67,7 +67,7 @@ const rss = {
     },
   },
   metadata: {
-    name: "Smashing Magazine",
+    name: "Beto Muniz's Drops",
   },
   fork: (data) => data,
 }
