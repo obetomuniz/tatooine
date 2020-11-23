@@ -5,6 +5,11 @@
  * @param {Function} fork
  * @return {object} Return the final result
  */
-export default (result, fork) => {
-  return fork ? { ...result, ...fork(result) } : result
+export default async (result, fork) => {
+  if (fork) {
+    const forkedResult = await fork(result)
+    return { ...result, ...forkedResult }
+  }
+
+  return result
 }

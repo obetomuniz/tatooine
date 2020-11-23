@@ -15,16 +15,16 @@ const getSourcesFromSPA = async ({ options, selectors, metadata, fork }) => {
     const data = await createSPARequest(url)
     const nodeList = getNodeListFromSelector(data, root)
     const sources = getSourcesFromNodeList(nodeList, rest)
-
-    return createResult(
+    const result = createResult(
       {
         sources: sources.slice(0, limit),
         metadata,
       },
       fork
     )
+    return result
   } catch ({ message }) {
-    return createResult(
+    const result = await createResult(
       {
         sources: [],
         metadata,
@@ -32,6 +32,7 @@ const getSourcesFromSPA = async ({ options, selectors, metadata, fork }) => {
       },
       fork
     )
+    return result
   }
 }
 

@@ -26,16 +26,17 @@ const getSourcesFromJSONObject = async ({
     })
     const list = root ? getJSONContentFromChain(root.value, data) : data
     const sources = getSourcesFromJSON(list, rest)
-
-    return createResult(
+    const result = await createResult(
       {
         sources: sources.slice(0, limit),
         metadata,
       },
       fork
     )
+
+    return result
   } catch ({ message }) {
-    return createResult(
+    const result = await createResult(
       {
         sources: [],
         metadata,
@@ -43,6 +44,7 @@ const getSourcesFromJSONObject = async ({
       },
       fork
     )
+    return result
   }
 }
 

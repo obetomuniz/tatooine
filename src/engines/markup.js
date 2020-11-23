@@ -18,16 +18,17 @@ const getSourcesFromMarkup = async ({ options, selectors, metadata, fork }) => {
       contentType: xml ? "text/xml" : "text/html",
     })
     const sources = getSourcesFromNodeList(nodeList, rest)
-
-    return createResult(
+    const result = createResult(
       {
         sources: sources.slice(0, limit),
         metadata,
       },
       fork
     )
+
+    return result
   } catch ({ message }) {
-    return createResult(
+    const result = await createResult(
       {
         sources: [],
         metadata,
@@ -35,6 +36,7 @@ const getSourcesFromMarkup = async ({ options, selectors, metadata, fork }) => {
       },
       fork
     )
+    return result
   }
 }
 
