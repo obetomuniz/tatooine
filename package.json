@@ -20,10 +20,10 @@
     "puppeteer": "^7.1.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.9.6",
-    "@types/jest": "^26.0.0",
+    "@babel/preset-env": "^7.13.12",
+    "@types/jest": "^26.0.22",
     "babel-jest": "^26.0.1",
-    "codecov": "^3.6.5",
+    "codecov": "^3.8.1",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-eslint-comments": "^3.1.2",

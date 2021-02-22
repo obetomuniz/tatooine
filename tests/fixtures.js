@@ -51,7 +51,7 @@ const rss = {
   engine: "markup",
   options: {
     request: {
-      url: "https://betomuniz.com/rss.xml",
+      url: "https://dev.to/feed/obetomuniz",
     },
     xml: true,
   },
