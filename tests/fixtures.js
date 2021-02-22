@@ -94,50 +94,24 @@ const api = {
   fork: (data) => data,
 }
 
-const staticFile = {
-  engine: "json",
-  options: {
-    request: {
-      url:
-        "https://raw.githubusercontent.com/minasdev/eventos/b6e215d44ab4760613c7ba80ffbc98167643b7d6/events.json",
-    },
-    limit: 5,
-  },
-  selectors: {
-    root: {
-      value: "events",
-    },
-    name: {
-      value: "name",
-    },
-    local: {
-      value: "local.name",
-    },
-  },
-  metadata: {
-    name: "Minas Dev Eventos",
-  },
-}
-
 const invalidJSONKeys = {
   engine: "json",
   options: {
     request: {
-      url:
-        "https://raw.githubusercontent.com/minasdev/eventos/b6e215d44ab4760613c7ba80ffbc98167643b7d6/events.json",
+      url: "https://jsonplaceholder.typicode.com/photos",
     },
     limit: 5,
   },
   selectors: {
-    root: {
-      value: "events",
+    title: {
+      value: "title",
     },
     xpto: {
       value: "xpto",
     },
   },
   metadata: {
-    name: "Minas Dev Eventos",
+    name: "JSON Placeholder",
   },
 }
 
@@ -216,7 +190,6 @@ export default {
     scraping,
     rss,
     api,
-    staticFile,
     invalidJSONKeys,
     invalidMarkupQuerySelectors,
     invalidSPAQuerySelectors,
