@@ -1,6 +1,6 @@
 {
   "name": "tatooine",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Tatooine: A pluggable, simple and powerful web scraper.",
   "author": "Beto Muniz <contato@betomuniz.com>",
   "license": "MIT",
