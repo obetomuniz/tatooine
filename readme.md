@@ -22,7 +22,7 @@ const promise = Tatooine(schemas, customEngines)
 
 ### Standard Engines
 
-For convenience, Tatooine provide you with three useful standard engines.
+For convenience, Tatooine provide three useful standard engines.
 
 - [Markup Engine docs](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/MARKUP.md) (e.g. RSS, Source Code Scraping, etc.)
 - [JSON Engine docs](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/JSON.md) (e.g. APIs, Web Services, etc.)
