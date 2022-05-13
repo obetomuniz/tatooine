@@ -1,6 +1,6 @@
 {
   "name": "tatooine",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Tatooine: A pluggable, simple and powerful web scraper.",
   "author": "Beto Muniz <contato@betomuniz.com>",
   "license": "MIT",
@@ -38,7 +38,7 @@
   },
   "scripts": {
     "pkg": "rollup -c",
-    "prepublish": "npm run pkg",
+    "prepublishOnly": "npm run pkg",
     "test": "jest && codecov",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collect-coverage"
