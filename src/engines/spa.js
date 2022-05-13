@@ -9,10 +9,10 @@ const getSourcesFromSPA = async ({ options, selectors, metadata, fork }) => {
   try {
     const { root, ...rest } = selectors
     const {
-      request: { url },
+      request: { url, config },
       limit,
     } = options
-    const data = await createSPARequest(url)
+    const data = await createSPARequest(url, config)
     const nodeList = getNodeListFromSelector(data, root)
     const sources = getSourcesFromNodeList(nodeList, rest)
     const result = createResult(

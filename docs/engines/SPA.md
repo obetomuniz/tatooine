@@ -12,6 +12,13 @@ const api = {
     request: {
       // url: String => URL that should be requested
       url: "https://...",
+      // config: Object => Internal configs
+      config: {
+        // launch: Object => Puppeeter launch settings
+        launch: {
+          ...
+        }
+      }
     },
     // limit?: Integer => Limits results returned
     limit: 5,
@@ -54,7 +61,14 @@ import Tatooine from "tatooine"
 const spa = {
   engine: "spa",
   options: {
-    url: "https://davidwalsh.name/demo/lazyload-2.0.php",
+    request: {
+      url: "https://davidwalsh.name/demo/lazyload-2.0.php",
+      config: {
+        launch: {
+          executablePath: "/opt/homebrew/bin/chromium",
+        },
+      },
+    },
   },
   selectors: {
     root: {

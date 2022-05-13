@@ -28,8 +28,11 @@ const autoScroll = async (page) => {
  * @param {string} url
  * @return {string} Return HTML content string
  */
-export default async (url) => {
-  const browser = await puppeteer.launch()
+export default async (url, config = {}) => {
+  const browser = await puppeteer.launch({
+    executablePath: puppeteer.executablePath(),
+    ...config.launch,
+  })
   const page = await browser.newPage()
   await page.goto(url)
   await autoScroll(page)

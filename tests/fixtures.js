@@ -3,11 +3,16 @@ const spa = {
   options: {
     request: {
       url: "https://davidwalsh.name/demo/lazyload-2.0.php",
+      config: {
+        launch: {
+          executablePath: "/opt/homebrew/bin/chromium",
+        },
+      },
     },
   },
   selectors: {
     root: {
-      value: ".Schemademo-wrapper table tr",
+      value: ".demo-wrapper table tr",
     },
     src: {
       value: ".image img",
@@ -144,6 +149,11 @@ const invalidSPAQuerySelectors = {
   options: {
     request: {
       url: "https://davidwalsh.name/demo/lazyload-2.0.php",
+      config: {
+        launch: {
+          executablePath: "/opt/homebrew/bin/chromium",
+        },
+      },
     },
   },
   selectors: {
