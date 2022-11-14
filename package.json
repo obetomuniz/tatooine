@@ -34,7 +34,7 @@
     "esm": "^3.2.25",
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
-    "rollup": "^2.44.0"
+    "rollup": "^3.3.0"
   },
   "scripts": {
     "pkg": "rollup -c",
