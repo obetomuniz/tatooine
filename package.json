@@ -15,7 +15,7 @@
     "email": "contato@betomuniz.com"
   },
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^1.2.6",
     "jsdom": "^16.5.2",
     "puppeteer": "^8.0.0"
   },
