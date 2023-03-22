@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./lib",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "lib": ["esnext", "dom"],
+    "declaration": true,
+    "declarationDir": "dist/types"
+  },
+  "include": ["lib/**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

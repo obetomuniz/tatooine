@@ -1,12 +1,6 @@
-import puppeteer from "puppeteer"
+import puppeteer, { Page, LaunchOptions } from "puppeteer"
 
-/**
- * This auto scroll pages. It's really useful for any case, but mainly for lazy load pages.
- *
- * @param {PuppeteerPageClass} page https://github.com/puppeteer/puppeteer/blob/master/docs/api.md#class-pages
- */
-const autoScroll = async (page) => {
-  /* istanbul ignore next */ // TODO: Improve this test
+const autoScroll = async (page: Page) => {
   await page.evaluate(async () => {
     await new Promise((resolve) => {
       let totalHeight = 0
@@ -17,21 +11,19 @@ const autoScroll = async (page) => {
         totalHeight += distance
         if (totalHeight >= scrollHeight) {
           clearInterval(timer)
-          resolve()
+          resolve(true)
         }
       }, 100)
     })
   })
 }
 
-/**
- * @param {string} url
- * @return {string} Return HTML content string
- */
-export default async (url, config = {}) => {
+const spaRequest = async (url: string, config: LaunchOptions) => {
   const browser = await puppeteer.launch({
-    executablePath: puppeteer.executablePath(),
-    ...config.launch,
+    executablePath: config?.executablePath
+      ? config.executablePath
+      : puppeteer.executablePath(),
+    ...config,
   })
   const page = await browser.newPage()
   await page.goto(url)
@@ -40,3 +32,5 @@ export default async (url, config = {}) => {
   await browser.close()
   return content
 }
+
+export default spaRequest
