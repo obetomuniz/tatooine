@@ -1,6 +1,6 @@
 # parseApi
 
-The `parseApi` function takes an JSON resource and an object containing `selectors` as input and returns an object with data extracted from the HTML. It uses the `utils/fetchData` to make the HTTP request to load the JSON data.
+The `parseApi` function takes an JSON resource and an object containing `selectors` as input and returns an object with data extracted.
 
 ## Selectors
 
