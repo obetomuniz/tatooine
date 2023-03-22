@@ -27,6 +27,6 @@ const data = await parse({
 
 ### Supported Engine Docs
 
-- [HTML](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/MARKUP.md) (e.g. Web Scraping, Single Page Applications, etc.)
+- [HTML](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/HTML.md) (e.g. Web Scraping, Single Page Applications, etc.)
 - [JSON](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/JSON.md) (e.g. APIs, Web Services, etc.)
-- [XML](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/SPA.md) (e.g. RSS, APIs, etc.)
+- [XML](https://github.com/obetomuniz/tatooine/tree/master/docs/engines/XML.md) (e.g. RSS, APIs, etc.)
