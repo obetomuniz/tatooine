@@ -1,7 +1,7 @@
-# Tatooine: A simple and powerful web scraper for JavaScript Developers.
+# tatooine: A simple and powerful web scraper for JavaScript Developers.
 
-<!-- [![Build Status](https://travis-ci.org/obetomuniz/tatooine.svg?branch=master)](https://travis-ci.org/obetomuniz/tatooine)
-[![codecov](https://codecov.io/gh/obetomuniz/tatooine/branch/master/graph/badge.svg)](https://codecov.io/gh/obetomuniz/tatooine) -->
+<!-- [![Build Status](https://travis-ci.org/obetomuniz/tatooine.svg?branch=main)](https://travis-ci.org/obetomuniz/tatooine)
+[![codecov](https://codecov.io/gh/obetomuniz/tatooine/branch/main/graph/badge.svg)](https://codecov.io/gh/obetomuniz/tatooine) -->
 
 <img src="https://cloud.githubusercontent.com/assets/1680157/17003290/a47ea06a-4ea5-11e6-8fc0-c36988534226.png" />
 
@@ -32,6 +32,6 @@ const data = await parse({
 
 ### Supported Engine Docs
 
-- [HTML](https://github.com/obetomuniz/tatooine/tree/master/docs/HTML.md) (e.g. Web Scraping, Single Page Applications, etc.)
-- [JSON](https://github.com/obetomuniz/tatooine/tree/master/docs/JSON.md) (e.g. APIs, Web Services, etc.)
-- [XML](https://github.com/obetomuniz/tatooine/tree/master/docs/XML.md) (e.g. RSS, APIs, etc.)
+- [HTML](https://github.com/obetomuniz/tatooine/tree/main/docs/HTML.md) (e.g. Web Scraping, Single Page Applications, etc.)
+- [JSON](https://github.com/obetomuniz/tatooine/tree/main/docs/JSON.md) (e.g. APIs, Web Services, etc.)
+- [XML](https://github.com/obetomuniz/tatooine/tree/main/docs/XML.md) (e.g. RSS, APIs, etc.)
