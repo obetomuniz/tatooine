@@ -31,6 +31,7 @@ const data = await scrape({
 
 ### Supported Engine Docs
 
-- [HTML](https://github.com/obetomuniz/tatooine/tree/main/docs/HTML.md) (e.g. Web Scraping, Single Page Applications, etc.)
-- [JSON](https://github.com/obetomuniz/tatooine/tree/main/docs/JSON.md) (e.g. APIs, Web Services, etc.)
+- [HTML](https://github.com/obetomuniz/tatooine/tree/main/docs/HTML.md) (e.g. Web Scraping)
+- [SPA](https://github.com/obetomuniz/tatooine/tree/main/docs/SPA.md) (e.g. Web Scraping for Single Page Applications)
+- [JSON](https://github.com/obetomuniz/tatooine/tree/main/docs/JSON.md) (e.g. Web Services, APIs, etc.)
 - [XML](https://github.com/obetomuniz/tatooine/tree/main/docs/XML.md) (e.g. RSS, APIs, etc.)
