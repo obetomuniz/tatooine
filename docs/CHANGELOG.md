@@ -1,5 +1,18 @@
 # Changelog
 
+### [3.0.5](https://github.com/obetomuniz/tatooine/compare/3.0.4...3.0.5) (2023-03-24)
+
+
+### Features
+
+* **conditions:** Introduce  that allows filter results expected based in some operations. Close [#346](https://github.com/obetomuniz/tatooine/issues/346) ([d833200](https://github.com/obetomuniz/tatooine/commit/d8332005f9627b3c16ca304b50edf8ac59a18b50))
+
+
+### Bug Fixes
+
+* **docs:** Add SPA engine to docs ([123b486](https://github.com/obetomuniz/tatooine/commit/123b486c07a98c0cf75242013f830eea1020a4bf))
+* Improve project description ([2063478](https://github.com/obetomuniz/tatooine/commit/20634786a9869012ce7c9644d7aa7e9a3e360e2c))
+
 ### [3.0.4](https://github.com/obetomuniz/tatooine/compare/3.0.3...3.0.4) (2023-03-24)
 
 
