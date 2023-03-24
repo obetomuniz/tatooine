@@ -1,5 +1,16 @@
 import xpath, { XPathResult } from "xpath-ts"
 import { TScrapedData, TSelectors } from "../../types"
+import { applyConditions } from "../tools/condition"
+
+const getSelectorValue = (values: string[], selector: any): any => {
+  if (selector.conditions) {
+    values = values.filter((value) =>
+      applyConditions(value, selector.conditions)
+    )
+  }
+
+  return values.length === 1 ? values[0] : values
+}
 
 const extractData = (
   document: Document,
@@ -21,7 +32,8 @@ const extractData = (
       nodeValues.push(node.textContent || "")
       node = nodes.iterateNext()
     }
-    data[key] = nodeValues.length === 1 ? nodeValues[0] : nodeValues
+
+    data[key] = getSelectorValue(nodeValues, value)
   }
 
   return data
