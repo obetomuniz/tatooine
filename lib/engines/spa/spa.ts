@@ -1,27 +1,27 @@
-import { AxiosRequestConfig } from "axios"
+import { LaunchOptions } from "puppeteer"
 import { JSDOM } from "jsdom"
-import { TScrapedDataPromise, IScrapeHtmlOptions } from "../../types"
-import fetchHttp from "../../utils/request/http"
+import { TScrapedDataPromise, IScrapeSpaOptions } from "../../types"
+import fetchSpa from "../../utils/request/spa"
 import extractData from "../../utils/extract/html"
 
 const processData = async (
   url: string,
-  options: IScrapeHtmlOptions
+  options: IScrapeSpaOptions
 ): TScrapedDataPromise => {
   const { selectors, request } = options
 
-  const html = await fetchHttp(url, request as AxiosRequestConfig)
-  const dom = new JSDOM(html)
+  const htmlContent = await fetchSpa(url, request as LaunchOptions)
+  const dom = new JSDOM(htmlContent)
   const document = dom.window.document
   return extractData(document, selectors)
 }
 
-const scrapeHtml = async (
+const scrapeSpa = async (
   url: string,
-  { selectors, request }: IScrapeHtmlOptions
+  { selectors, request }: IScrapeSpaOptions
 ): TScrapedDataPromise => {
   const data = await processData(url, { selectors, request })
   return data
 }
 
-export default scrapeHtml
+export default scrapeSpa

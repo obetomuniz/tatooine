@@ -47,8 +47,7 @@
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-filesize": "^10.0.0",
     "tslib": "^2.5.0",
-    "typescript": "^5.0.2",
-    "utility-types": "^3.10.0"
+    "typescript": "^5.0.2"
   },
   "scripts": {
     "pkg": "rm -rf ./dist/ && rollup -c",

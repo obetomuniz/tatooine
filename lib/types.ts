@@ -1,10 +1,11 @@
-import { $Values } from "utility-types"
+import { AxiosRequestConfig } from "axios"
 import { LaunchOptions } from "puppeteer"
 
-export type EngineTypes = "html" | "json" | "xml"
+export type EngineTypes = "html" | "spa" | "json" | "xml"
 
 export enum EngineType {
   Html = "html",
+  Spa = "spa",
   Json = "json",
   Xml = "xml",
 }
@@ -20,20 +21,31 @@ export interface ISelectorWithAttribute {
 
 export type TSelectors = Record<string, ISelectorWithAttribute>
 
-export interface IScrapeDefaultOptions {
+export interface IScrapeHtmlOptions {
   selectors: TSelectors
+  request?: AxiosRequestConfig
 }
 
-export interface IScrapeHtmlOptions extends IScrapeDefaultOptions {
-  spa?: { enable: boolean; browserConfig: LaunchOptions }
+export interface IScrapeSpaOptions {
+  selectors: TSelectors
+  request?: LaunchOptions
 }
 
-export interface IScrapeJsonOptions extends IScrapeDefaultOptions {}
+export interface IScrapeJsonOptions {
+  selectors: TSelectors
+  request?: AxiosRequestConfig
+}
 
-export interface IScrapeXmlOptions extends IScrapeDefaultOptions {}
+export interface IScrapeXmlOptions {
+  selectors: TSelectors
+  request?: AxiosRequestConfig
+}
 
 export interface IScrapeOptions {
   url: string
   engine: EngineType | EngineTypes
-  options: IScrapeHtmlOptions | IScrapeJsonOptions | IScrapeXmlOptions
+  options: IScrapeHtmlOptions &
+    IScrapeSpaOptions &
+    IScrapeJsonOptions &
+    IScrapeXmlOptions
 }

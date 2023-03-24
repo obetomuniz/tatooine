@@ -6,6 +6,10 @@ The `scrapeApi` function takes an JSON resource and an object containing `select
 
 The `selectors` should be an object with keys that correspond to the data that you want to extract in the JSON returned.
 
+## Request
+
+The `request` configuration should be an object that correspond to the `AxiosRequestConfig` type from `axios`. Enjoy this flexibility.
+
 ## Example
 
 ```javascript

@@ -18,7 +18,7 @@ const autoScroll = async (page: Page) => {
   })
 }
 
-const request = async (url: string, config: LaunchOptions) => {
+const request = async (url: string, config: LaunchOptions = {}) => {
   const browser = await puppeteer.launch({
     executablePath: config?.executablePath
       ? config.executablePath

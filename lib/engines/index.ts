@@ -1,4 +1,5 @@
 export { default as scrape } from "./default"
 export { default as scrapeHtml } from "./html"
+export { default as scrapeSpa } from "./spa"
 export { default as scrapeXml } from "./xml"
 export { default as scrapeJson } from "./json"
