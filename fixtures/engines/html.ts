@@ -1,4 +1,4 @@
-import { EngineType } from "types"
+import { EngineType } from "../../lib/types"
 
 const SpaScrapingFixture = {
   url: "https://davidwalsh.name/demo/lazyload-2.0.php",

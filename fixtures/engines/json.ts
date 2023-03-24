@@ -1,4 +1,4 @@
-import { EngineType } from "types"
+import { EngineType } from "../../lib/types"
 
 const JsonScrapingFixture = {
   url: "https://my-json-server.typicode.com/typicode/demo/posts/1",

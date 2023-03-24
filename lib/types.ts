@@ -1,4 +1,7 @@
+import { $Values } from "utility-types"
 import { LaunchOptions } from "puppeteer"
+
+export type EngineTypes = "html" | "json" | "xml"
 
 export enum EngineType {
   Html = "html",
@@ -31,6 +34,6 @@ export interface IScrapeXmlOptions extends IScrapeDefaultOptions {}
 
 export interface IScrapeOptions {
   url: string
-  engine: EngineType
+  engine: EngineType | EngineTypes
   options: IScrapeHtmlOptions | IScrapeJsonOptions | IScrapeXmlOptions
 }

@@ -5,8 +5,8 @@ import {
   TScrapedDataPromise,
   IScrapeXmlOptions,
   TSelectors,
-} from "types"
-import fetchHttp from "utils/request/http"
+} from "../../types"
+import fetchHttp from "../../utils/request/http"
 
 const extractData = (
   document: Document,

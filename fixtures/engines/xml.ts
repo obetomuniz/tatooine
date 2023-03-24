@@ -1,4 +1,4 @@
-import { EngineType } from "types"
+import { EngineType } from "../../lib/types"
 
 const XmlScrapingFixture = {
   url: "https://dev.to/feed/obetomuniz",
