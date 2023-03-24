@@ -1,4 +1,4 @@
-# tatooine: A simple and powerful web scraper for JavaScript Developers.
+# tatooine: A simple and powerful scraper for JavaScript Developers.
 
 <!-- [![Build Status](https://travis-ci.org/obetomuniz/tatooine.svg?branch=main)](https://travis-ci.org/obetomuniz/tatooine)
 [![codecov](https://codecov.io/gh/obetomuniz/tatooine/branch/main/graph/badge.svg)](https://codecov.io/gh/obetomuniz/tatooine) -->

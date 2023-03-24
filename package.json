@@ -1,7 +1,7 @@
 {
   "name": "tatooine",
   "version": "3.0.3",
-  "description": "",
+  "description": "A simple and powerful scraper for JavaScript Developers.",
   "directories": {
     "doc": "docs",
     "lib": "lib"
