@@ -1,11 +1,10 @@
-// @ts-ignore
-import { parseHtml } from "../dist/bundle.esm"
-import { SpaScrapingFixture, HtmlScrapingFixture } from "../fixtures"
+import { scrapeHtml } from "../../../index"
+import { SpaScrapingFixture, HtmlScrapingFixture } from "../../../../fixtures"
 
 describe("Tatooine", () => {
-  describe("parseHtml", () => {
+  describe("scrapeHtml", () => {
     it("should process from HTML resource", async () => {
-      const data = await parseHtml(
+      const data = await scrapeHtml(
         HtmlScrapingFixture.url,
         HtmlScrapingFixture.options
       )
@@ -13,7 +12,7 @@ describe("Tatooine", () => {
     })
     // TODO: Investigate why this test not is working, probably related to puppeteer support
     xit("should process from SPA resource", async () => {
-      const data = await parseHtml(
+      const data = await scrapeHtml(
         SpaScrapingFixture.url,
         SpaScrapingFixture.options
       )

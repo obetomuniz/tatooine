@@ -1,6 +1,6 @@
-# parseHtml
+# scrapeHtml
 
-The `parseHtml` function takes an page URL and an object containing `selectors` as input and returns an object with data extracted from the HTML string. It uses the `cheerio` and `utils/fetchData` functions to load the HTML and extract the required information using the provided `selectors`.
+The `scrapeHtml` function takes an page URL and an object containing `selectors` as input and returns an object with data extracted from the HTML string. It uses the `cheerio` and `utils/fetchData` functions to load the HTML and extract the required information using the provided `selectors`.
 
 ## Selectors
 
@@ -8,15 +8,15 @@ The `selectors` should be an object with keys that correspond to the data that y
 
 ## SPAs
 
-If the `spa` option is enabled, parseHtml will use `puppeteer` to load the HTML content dynamically by opening a headless browser and navigating to the URL specified in the data parameter. This is useful for extracting data from single-page applications (SPAs) that load content dynamically.
+If the `spa` option is enabled, scrapeHtml will use `puppeteer` to load the HTML content dynamically by opening a headless browser and navigating to the URL specified in the data parameter. This is useful for extracting data from single-page applications (SPAs) that load content dynamically.
 
 ## Example
 
 ```javascript
-import { parseHtml } from "tatooine"
+import { scrapeHtml } from "tatooine"
 
 const htmlUrl = "https://example.com"
-const htmlData = await parseHtml(htmlUrl, {
+const htmlData = await scrapeHtml(htmlUrl, {
   selectors: {
     title: { selector: "title" },
     featured: { selector: "img", attribute: "src" },

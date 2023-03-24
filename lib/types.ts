@@ -6,9 +6,9 @@ export enum EngineType {
   Xml = "xml",
 }
 
-export type TParsedData = Record<string, any>
+export type TScrapedData = Record<string, any>
 
-export type TParsedDataPromise = Promise<TParsedData>
+export type TScrapedDataPromise = Promise<TScrapedData>
 
 export interface ISelectorWithAttribute {
   selector: string
@@ -17,20 +17,20 @@ export interface ISelectorWithAttribute {
 
 export type TSelectors = Record<string, ISelectorWithAttribute>
 
-export interface IParseDefaultOptions {
+export interface IScrapeDefaultOptions {
   selectors: TSelectors
 }
 
-export interface IParseHtmlOptions extends IParseDefaultOptions {
+export interface IScrapeHtmlOptions extends IScrapeDefaultOptions {
   spa?: { enable: boolean; browserConfig: LaunchOptions }
 }
 
-export interface IParseJsonOptions extends IParseDefaultOptions {}
+export interface IScrapeJsonOptions extends IScrapeDefaultOptions {}
 
-export interface IParseXmlOptions extends IParseDefaultOptions {}
+export interface IScrapeXmlOptions extends IScrapeDefaultOptions {}
 
-export interface IParseOptions {
+export interface IScrapeOptions {
   url: string
   engine: EngineType
-  options: IParseHtmlOptions | IParseJsonOptions | IParseXmlOptions
+  options: IScrapeHtmlOptions | IScrapeJsonOptions | IScrapeXmlOptions
 }

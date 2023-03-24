@@ -1,19 +1,18 @@
 import { JSDOM } from "jsdom"
-import * as puppeteer from "puppeteer"
 import {
-  TParsedData,
-  TParsedDataPromise,
-  IParseHtmlOptions,
+  TScrapedData,
+  TScrapedDataPromise,
+  IScrapeHtmlOptions,
   TSelectors,
 } from "types"
-import fetchSpaData from "utils/fetchSpaData"
-import fetchData from "utils/fetchData"
+import fetchHttp from "utils/request/http"
+import fetchSpa from "utils/request/spa"
 
 const extractData = (
   document: Document,
   selectors: TSelectors
-): TParsedData => {
-  const data: TParsedData = {}
+): TScrapedData => {
+  const data: TScrapedData = {}
 
   for (const [key, value] of Object.entries(selectors)) {
     const elements = document.querySelectorAll(value.selector)
@@ -41,29 +40,29 @@ const extractData = (
 
 const processData = async (
   url: string,
-  options: IParseHtmlOptions
-): TParsedDataPromise => {
+  options: IScrapeHtmlOptions
+): TScrapedDataPromise => {
   const { selectors, spa } = options
 
   if (spa?.enable) {
-    const htmlContent = await fetchSpaData(url, spa.browserConfig)
+    const htmlContent = await fetchSpa(url, spa.browserConfig)
     const dom = new JSDOM(htmlContent)
     const document = dom.window.document
     return extractData(document, selectors)
   } else {
-    const html = await fetchData(url)
+    const html = await fetchHttp(url)
     const dom = new JSDOM(html)
     const document = dom.window.document
     return extractData(document, selectors)
   }
 }
 
-const parse = async (
+const scrapeHtml = async (
   url: string,
-  { selectors, spa = { enable: false, browserConfig: {} } }: IParseHtmlOptions
-): TParsedDataPromise => {
+  { selectors, spa = { enable: false, browserConfig: {} } }: IScrapeHtmlOptions
+): TScrapedDataPromise => {
   const data = await processData(url, { selectors, spa })
   return data
 }
 
-export default parse
+export default scrapeHtml

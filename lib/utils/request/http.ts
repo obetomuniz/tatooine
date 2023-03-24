@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios"
 
-const fetchData = async (url: string): Promise<any> => {
+const request = async (url: string): Promise<any> => {
   try {
     const response: AxiosResponse<any> = await axios.get(url)
     return response.data
@@ -9,4 +9,4 @@ const fetchData = async (url: string): Promise<any> => {
   }
 }
 
-export default fetchData
+export default request

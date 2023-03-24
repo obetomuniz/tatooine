@@ -1,11 +1,10 @@
-// @ts-ignore
-import { parseJson } from "../dist/bundle.esm"
-import { JsonScrapingFixture } from "../fixtures"
+import { scrapeJson } from "../../../index"
+import { JsonScrapingFixture } from "../../../../fixtures"
 
 describe("Tatooine", () => {
-  describe("parseJson", () => {
+  describe("scrapeJson", () => {
     it("should process from JSON resource", async () => {
-      const data = await parseJson(
+      const data = await scrapeJson(
         JsonScrapingFixture.url,
         JsonScrapingFixture.options
       )

@@ -1,6 +1,6 @@
-# parseApi
+# scrapeApi
 
-The `parseApi` function takes an JSON resource and an object containing `selectors` as input and returns an object with data extracted.
+The `scrapeApi` function takes an JSON resource and an object containing `selectors` as input and returns an object with data extracted.
 
 ## Selectors
 
@@ -9,10 +9,10 @@ The `selectors` should be an object with keys that correspond to the data that y
 ## Example
 
 ```javascript
-import { parseApi } from "tatooine"
+import { scrapeApi } from "tatooine"
 
 const apiUrl = "https://example.com/api"
-const result = await parseApi(apiUrl, {
+const result = await scrapeApi(apiUrl, {
   selectors: {
     title: {
       selector: "title",

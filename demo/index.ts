@@ -1,8 +1,8 @@
-import { parse, parseJson, parseHtml, parseXml } from "../dist/bundle.esm"
+import { scrape, scrapeJson, scrapeHtml, scrapeXml } from "../dist/bundle.esm"
 ;(async () => {
   console.log(
     "SPA",
-    await parseHtml("https://davidwalsh.name/demo/lazyload-2.0.php", {
+    await scrapeHtml("https://davidwalsh.name/demo/lazyload-2.0.php", {
       selectors: {
         title: {
           selector: ".demo-wrapper table tr .image img",
@@ -20,7 +20,7 @@ import { parse, parseJson, parseHtml, parseXml } from "../dist/bundle.esm"
 
   console.log(
     "HTML",
-    await parseHtml("https://betomuniz.com", {
+    await scrapeHtml("https://betomuniz.com", {
       selectors: {
         title: {
           selector: ".dkEYQi .eUVckX",
@@ -32,7 +32,7 @@ import { parse, parseJson, parseHtml, parseXml } from "../dist/bundle.esm"
 
   console.log(
     "XML",
-    await parseXml("https://dev.to/feed/obetomuniz", {
+    await scrapeXml("https://dev.to/feed/obetomuniz", {
       selectors: {
         title: {
           selector: "//item[1]/title/text()",
@@ -43,7 +43,7 @@ import { parse, parseJson, parseHtml, parseXml } from "../dist/bundle.esm"
 
   console.log(
     "JSON",
-    await parseJson(
+    await scrapeJson(
       "https://my-json-server.typicode.com/typicode/demo/posts/1",
       {
         selectors: { title: { selector: "title" } },
@@ -53,7 +53,7 @@ import { parse, parseJson, parseHtml, parseXml } from "../dist/bundle.esm"
 
   console.log(
     "HTML",
-    await parse({
+    await scrape({
       url: "https://betomuniz.com",
       engine: "html",
       options: {
@@ -64,7 +64,7 @@ import { parse, parseJson, parseHtml, parseXml } from "../dist/bundle.esm"
 
   console.log(
     "XML",
-    await parse({
+    await scrape({
       url: "https://dev.to/feed/obetomuniz",
       engine: "xml",
       options: {
@@ -75,7 +75,7 @@ import { parse, parseJson, parseHtml, parseXml } from "../dist/bundle.esm"
 
   console.log(
     "JSON",
-    await parse({
+    await scrape({
       url: "https://my-json-server.typicode.com/typicode/demo/posts/1",
       engine: "json",
       options: {

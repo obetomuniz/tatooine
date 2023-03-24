@@ -1,11 +1,10 @@
-// @ts-ignore
-import { parseXml } from "../dist/bundle.esm"
-import { XmlScrapingFixture } from "../fixtures"
+import { scrapeXml } from "../../../index"
+import { XmlScrapingFixture } from "../../../../fixtures"
 
 describe("Tatooine", () => {
-  describe("parseXml", () => {
+  describe("scrapeXml", () => {
     it("should process from XML resource", async () => {
-      const data = await parseXml(
+      const data = await scrapeXml(
         XmlScrapingFixture.url,
         XmlScrapingFixture.options
       )

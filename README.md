@@ -15,13 +15,12 @@ $ npm install tatooine --save
 
 [![Try on Replit](https://camo.githubusercontent.com/56417b1780ddc0e04d7c9ce2e4041a437a25aeaa898473a75695723e88a9d043/68747470733a2f2f7265706c2d62616467652e6a616a6f6f73616d2e7265706c2e636f2f7472792e706e67)](https://replit.com/@obetomuniz/Tatooine-in-Action?v=1#index.js)
 
-
 ## How to use
 
 ```js
-import { parse } from "tatooine"
+import { scrape } from "tatooine"
 
-const data = await parse({
+const data = await scrape({
   url: "https://betomuniz.com",
   engine: "html",
   options: {

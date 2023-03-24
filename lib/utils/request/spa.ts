@@ -18,7 +18,7 @@ const autoScroll = async (page: Page) => {
   })
 }
 
-const spaRequest = async (url: string, config: LaunchOptions) => {
+const request = async (url: string, config: LaunchOptions) => {
   const browser = await puppeteer.launch({
     executablePath: config?.executablePath
       ? config.executablePath
@@ -33,4 +33,4 @@ const spaRequest = async (url: string, config: LaunchOptions) => {
   return content
 }
 
-export default spaRequest
+export default request

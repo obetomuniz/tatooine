@@ -1,18 +1,18 @@
 import get from "lodash.get"
 import {
-  TParsedData,
-  TParsedDataPromise,
-  IParseXmlOptions,
+  TScrapedData,
+  TScrapedDataPromise,
+  IScrapeXmlOptions,
   TSelectors,
 } from "types"
-import fetchData from "utils/fetchData"
+import fetchHttp from "utils/request/http"
 
-const extractData = (j: any, selectors: TSelectors): TParsedData => {
-  const data: TParsedData = {}
+const extractData = (j: any, selectors: TSelectors): TScrapedData => {
+  const data: TScrapedData = {}
 
   if (Array.isArray(j)) {
     return j.map((obj) => {
-      const data: TParsedData = {}
+      const data: TScrapedData = {}
 
       for (const [key, value] of Object.entries(selectors)) {
         data[key] = get(obj, value.selector, "")
@@ -31,18 +31,17 @@ const extractData = (j: any, selectors: TSelectors): TParsedData => {
 
 const processData = (
   j: string,
-  { selectors }: IParseXmlOptions
-): TParsedData => {
+  { selectors }: IScrapeXmlOptions
+): TScrapedData => {
   return extractData(j, selectors)
 }
 
-const parse = async (
+const scrapeJson = async (
   url: string,
-  { selectors }: IParseXmlOptions
-): TParsedDataPromise => {
-  const j = await fetchData(url)
-  const data = processData(j, { selectors })
-  return data
+  { selectors }: IScrapeXmlOptions
+): TScrapedDataPromise => {
+  const j = await fetchHttp(url)
+  return processData(j, { selectors })
 }
 
-export default parse
+export default scrapeJson

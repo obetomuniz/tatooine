@@ -1,4 +1,4 @@
-export { default as parse } from "engines/default"
-export { default as parseJson } from "engines/json"
-export { default as parseXml } from "engines/xml"
-export { default as parseHtml } from "engines/html"
+export { default as scrape } from "engines/default/default"
+export { default as scrapeJson } from "engines/json/json"
+export { default as scrapeXml } from "engines/xml/xml"
+export { default as scrapeHtml } from "engines/html/html"
