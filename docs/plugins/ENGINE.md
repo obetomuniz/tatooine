@@ -36,6 +36,14 @@ registerEnginePlugin(customEnginePlugin)
 
 ## API
 
-- `type: PluginType.Engine`: A property that specifies the type of the plugin.
-- `engine: T`: A property that specifies the custom engine name for the plugin.
-- `scrape(url: string, options: TScrapeDefaultOptions): TScrapedData | TScrapedDataPromise`: A method that expected a resource address with the specified options. It returns a promise that resolves the scraped data.
+#### `type: PluginType.Engine`
+
+A property that specifies the type of the plugin.
+
+#### `engine: T`
+
+A property that specifies the custom engine name for the plugin.
+
+#### `scrape(url: string, options: TScrapeDefaultOptions): TScrapedData | TScrapedDataPromise`
+
+A method that expected a resource address with the specified options. It returns a promise that resolves the scraped data.

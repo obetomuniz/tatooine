@@ -27,8 +27,22 @@ export default plugin
 
 ## API
 
-- `type: PluginType.Transformer`: A property that specifies the type of the plugin.
-- `supportedEngines: EngineType[]`: A property that specifies the engines supported by the plugin.
-- `onInit(options: { selectors: TSelectors }): void`: A method that is called once before processing any data.
-- `onPreProcess(data: string): string`: A method that is called for each input before processing it.
-- `onPostProcess(data: TScrapedData): TScrapedData`: A method that is called after built-in Tatooine's apply its data structure.
+#### `type: PluginType.Transformer`
+
+A property that specifies the type of the plugin.
+
+#### `supportedEngines: EngineType[]`
+
+A property that specifies the engines supported by the plugin.
+
+#### `onInit(options: { selectors: TSelectors }): void`
+
+A method that is called once before processing any data.
+
+#### `onPreProcess(data: string): string`
+
+A method that is called for each input before processing it.
+
+#### `onPostProcess(data: TScrapedData): TScrapedData`
+
+A method that is called after built-in Tatooine's apply its data structure.
