@@ -17,11 +17,13 @@ import { scrapeXml } from "tatooine"
 
 const xmlUrl = "https://example.com/feed.xml"
 const xmlData = await scrapeXml(xmlUrl, {
-  title: {
-    selector: "//channel/title",
-  },
-  description: {
-    selector: "//channel/description",
+  selectors: {
+    title: {
+      selector: "//channel/title",
+    },
+    description: {
+      selector: "//channel/description",
+    },
   },
 })
 
