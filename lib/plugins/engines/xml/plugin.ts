@@ -1,30 +1,32 @@
-import { AxiosRequestConfig } from "axios"
+import { JSDOM } from "jsdom"
 import {
-  TScrapedData,
-  TScrapedDataPromise,
-  IScrapeXmlOptions,
   EngineType,
+  IEnginePlugin,
+  IScrapeXmlOptions,
   PluginType,
-} from "../../types"
-import fetchHttp from "../../utils/request/http"
-import extractData from "../../utils/extract/json"
+  TScrapedDataPromise,
+} from "../../../types"
+import fetchHttp from "../../../utils/request/http"
+import extractData from "../../../utils/extract/html"
 
 const processData = async (
   url: string,
   { selectors, request, plugins }: IScrapeXmlOptions
 ): TScrapedDataPromise => {
-  let j = await fetchHttp(url, request)
+  let xml = await fetchHttp(url, request)
 
   plugins?.forEach((plugin) => {
     if (plugin.onPreProcess) {
-      j = plugin.onPreProcess(j)
+      xml = plugin.onPreProcess(xml)
     }
   })
 
-  return extractData(j, selectors)
+  const dom = new JSDOM(xml, { contentType: "text/xml" })
+  const document = dom.window.document
+  return extractData(document, selectors)
 }
 
-const scrapeJson = async (
+export const scrape = async (
   url: string,
   { selectors, request, plugins }: IScrapeXmlOptions
 ): TScrapedDataPromise => {
@@ -32,7 +34,7 @@ const scrapeJson = async (
     if (
       plugin.type === PluginType.Transformer &&
       plugin.onInit &&
-      plugin?.supportedEngines?.includes(EngineType.Json || "all")
+      plugin?.supportedEngines?.includes(EngineType.Xml || "all")
     ) {
       plugin.onInit({ selectors })
     }
@@ -49,4 +51,10 @@ const scrapeJson = async (
   return data
 }
 
-export default scrapeJson
+const plugin: IEnginePlugin<"xml"> = {
+  type: "engine",
+  engine: "xml",
+  scrape,
+}
+
+export default plugin

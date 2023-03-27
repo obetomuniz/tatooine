@@ -1,21 +1,22 @@
-import { LaunchOptions } from "puppeteer"
+import { AxiosRequestConfig } from "axios"
 import { JSDOM } from "jsdom"
 import {
-  TScrapedDataPromise,
-  IScrapeSpaOptions,
   EngineType,
+  IEnginePlugin,
+  IScrapeHtmlOptions,
   PluginType,
-} from "../../types"
-import fetchSpa from "../../utils/request/spa"
-import extractData from "../../utils/extract/html"
+  TScrapedDataPromise,
+} from "../../../types"
+import fetchHttp from "../../../utils/request/http"
+import extractData from "../../../utils/extract/html"
 
 const processData = async (
   url: string,
-  options: IScrapeSpaOptions
+  options: IScrapeHtmlOptions
 ): TScrapedDataPromise => {
   const { selectors, request, plugins } = options
 
-  let html = await fetchSpa(url, request as LaunchOptions)
+  let html = await fetchHttp(url, request as AxiosRequestConfig)
 
   plugins?.forEach((plugin) => {
     if (plugin.onPreProcess) {
@@ -28,15 +29,15 @@ const processData = async (
   return extractData(document, selectors)
 }
 
-const scrapeSpa = async (
+export const scrape = async (
   url: string,
-  { selectors, request, plugins }: IScrapeSpaOptions
+  { selectors, request, plugins = [] }: IScrapeHtmlOptions
 ): TScrapedDataPromise => {
   plugins?.forEach((plugin) => {
     if (
       plugin.type === PluginType.Transformer &&
       plugin.onInit &&
-      plugin?.supportedEngines?.includes(EngineType.Spa || "all")
+      plugin.supportedEngines?.includes(EngineType.Html || "all")
     ) {
       plugin.onInit({ selectors })
     }
@@ -53,4 +54,10 @@ const scrapeSpa = async (
   return data
 }
 
-export default scrapeSpa
+const plugin: IEnginePlugin<"html"> = {
+  type: "engine",
+  engine: "html",
+  scrape,
+}
+
+export default plugin

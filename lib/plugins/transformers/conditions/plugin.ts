@@ -1,4 +1,4 @@
-import { ITransformerPlugin, TScrapedData } from "../../types"
+import { ITransformerPlugin, TScrapedData } from "../../../types"
 import { ConditionPluginType } from "./types"
 import { applyConditions } from "./conditions"
 
@@ -16,6 +16,8 @@ const plugin = (conditions: ConditionPluginType): ITransformerPlugin => ({
           newData[key] = value.filter((v) =>
             applyConditions(v, conditions[key])
           )
+          newData[key] =
+            newData[key]?.length === 1 ? newData[key][0] : newData[key]
         } else {
           newData[key] = applyConditions(value, conditions[key]) ? value : null
         }

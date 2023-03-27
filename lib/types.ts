@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from "axios"
 import { LaunchOptions } from "puppeteer"
+import { SCRAPE_TYPES } from "./utils/register"
 
 export enum EngineType {
   Html = "html",
@@ -8,7 +9,11 @@ export enum EngineType {
   Xml = "xml",
 }
 
-export type TEngineTypes = "html" | "spa" | "json" | "xml"
+export type EnginePlugins = {
+  [K in keyof typeof SCRAPE_TYPES]: K
+}
+
+export type TEngineTypes = keyof EnginePlugins
 
 export type TScrapedData = Record<string, any>
 
@@ -67,13 +72,7 @@ export interface IPlugin {
   type: string
 }
 
-export type TPluginEngine = string
-
-export type TPluginSupportedEngines =
-  | EngineType
-  | TEngineTypes
-  | TPluginEngine
-  | "all"
+export type TPluginSupportedEngines = EngineType | keyof EnginePlugins | "all"
 export interface ITransformerPlugin extends IPlugin {
   supportedEngines?: TPluginSupportedEngines[]
   onInit?: (options: { selectors: TSelectors }) => void
@@ -81,7 +80,9 @@ export interface ITransformerPlugin extends IPlugin {
   onPostProcess?: (data: TScrapedData) => TScrapedData
 }
 
-export interface IEnginePlugin extends IPlugin {
-  engine: TPluginEngine
-  scrape: (url: string, options: TScrapeDefaultOptions) => Promise<TScrapedData>
+export interface IEnginePlugin<
+  T extends keyof EnginePlugins = keyof EnginePlugins
+> extends IPlugin {
+  engine: T
+  scrape: (url: string, options: TScrapeDefaultOptions) => TScrapedDataPromise
 }

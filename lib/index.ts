@@ -1,3 +1,4 @@
 export * from "./types"
-export * from "./engines"
 export * from "./plugins"
+export { scrape } from "./utils/scrape"
+export { registerEnginePlugin } from "./utils/register"

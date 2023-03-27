@@ -4,7 +4,7 @@ Tatooine's Transformer Plugins The current plugin allows plugins developers to a
 
 ## Plugin Scaffolding
 
-```javascript
+```typescript
 import { PluginType, ITransformerPlugin, TScrapedData, EngineType,  } from "tatooine"
 
 const plugin: ITransformerPlugin = {
@@ -27,7 +27,7 @@ export default plugin
 
 ## API
 
-- `type: PluginType`: A property that specifies the type of the plugin.
+- `type: PluginType.Transformer`: A property that specifies the type of the plugin.
 - `supportedEngines: EngineType[]`: A property that specifies the engines supported by the plugin.
 - `onInit(options: { selectors: TSelectors }): void`: A method that is called once before processing any data.
 - `onPreProcess(data: string): string`: A method that is called for each input before processing it.

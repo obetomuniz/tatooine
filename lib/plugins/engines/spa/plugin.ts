@@ -1,39 +1,43 @@
 import { JSDOM } from "jsdom"
 import {
-  TScrapedDataPromise,
-  IScrapeXmlOptions,
   EngineType,
+  IEnginePlugin,
+  IScrapeSpaOptions,
   PluginType,
-} from "../../types"
-import fetchHttp from "../../utils/request/http"
-import extractData from "../../utils/extract/xml"
+  TScrapedDataPromise,
+} from "../../../types"
+import fetchSpa from "../../../utils/request/spa"
+import extractData from "../../../utils/extract/html"
+import { LaunchOptions } from "puppeteer"
 
 const processData = async (
   url: string,
-  { selectors, request, plugins }: IScrapeXmlOptions
+  options: IScrapeSpaOptions
 ): TScrapedDataPromise => {
-  let xml = await fetchHttp(url, request)
+  const { selectors, request, plugins } = options
+
+  let html = await fetchSpa(url, request as LaunchOptions)
 
   plugins?.forEach((plugin) => {
     if (plugin.onPreProcess) {
-      xml = plugin.onPreProcess(xml)
+      html = plugin.onPreProcess(html)
     }
   })
 
-  const dom = new JSDOM(xml, { contentType: "text/xml" })
+  const dom = new JSDOM(html)
   const document = dom.window.document
   return extractData(document, selectors)
 }
 
-const scrapeXml = async (
+export const scrape = async (
   url: string,
-  { selectors, request, plugins }: IScrapeXmlOptions
+  { selectors, request, plugins }: IScrapeSpaOptions
 ): TScrapedDataPromise => {
   plugins?.forEach((plugin) => {
     if (
       plugin.type === PluginType.Transformer &&
       plugin.onInit &&
-      plugin?.supportedEngines?.includes(EngineType.Xml || "all")
+      plugin?.supportedEngines?.includes(EngineType.Spa || "all")
     ) {
       plugin.onInit({ selectors })
     }
@@ -50,4 +54,10 @@ const scrapeXml = async (
   return data
 }
 
-export default scrapeXml
+const plugin: IEnginePlugin<"spa"> = {
+  type: "engine",
+  engine: "spa",
+  scrape,
+}
+
+export default plugin
