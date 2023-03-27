@@ -29,9 +29,13 @@ const data = await scrape({
 })
 ```
 
-### Supported Engine Docs
+### Built-in Engines
 
-- [HTML](https://github.com/obetomuniz/tatooine/tree/main/docs/HTML.md) (e.g. Web Scraping)
-- [SPA](https://github.com/obetomuniz/tatooine/tree/main/docs/SPA.md) (e.g. Web Scraping for Single Page Applications)
-- [JSON](https://github.com/obetomuniz/tatooine/tree/main/docs/JSON.md) (e.g. Web Services, APIs, etc.)
-- [XML](https://github.com/obetomuniz/tatooine/tree/main/docs/XML.md) (e.g. RSS, APIs, etc.)
+- [HTML](https://github.com/obetomuniz/tatooine/tree/main/docs/engines/HTML.md) (e.g. Web Scraping)
+- [SPA](https://github.com/obetomuniz/tatooine/tree/main/docs/engines/SPA.md) (e.g. Web Scraping for Single Page Applications)
+- [JSON](https://github.com/obetomuniz/tatooine/tree/main/docs/engines/JSON.md) (e.g. Web Services, APIs, etc.)
+- [XML](https://github.com/obetomuniz/tatooine/tree/main/docs/engines/XML.md) (e.g. RSS, APIs, etc.)
+
+## Extended Features
+
+- [Transformer Plugins](https://github.com/obetomuniz/tatooine/tree/main/docs/plugins/TRANSFORMER.md) - Create your own pre/post data processing flows.

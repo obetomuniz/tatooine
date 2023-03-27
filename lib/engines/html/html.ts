@@ -1,6 +1,11 @@
 import { AxiosRequestConfig } from "axios"
 import { JSDOM } from "jsdom"
-import { TScrapedDataPromise, IScrapeHtmlOptions } from "../../types"
+import {
+  TScrapedDataPromise,
+  IScrapeHtmlOptions,
+  EngineType,
+  PluginType,
+} from "../../types"
 import fetchHttp from "../../utils/request/http"
 import extractData from "../../utils/extract/html"
 
@@ -13,8 +18,8 @@ const processData = async (
   let html = await fetchHttp(url, request as AxiosRequestConfig)
 
   plugins?.forEach((plugin) => {
-    if (plugin.preProcess) {
-      html = plugin.preProcess(html)
+    if (plugin.onPreProcess) {
+      html = plugin.onPreProcess(html)
     }
   })
 
@@ -29,19 +34,19 @@ const scrapeHtml = async (
 ): TScrapedDataPromise => {
   plugins?.forEach((plugin) => {
     if (
-      plugin.pluginType === "transformer" &&
-      plugin.initialize &&
-      plugin.supportedEngines?.includes("html")
+      plugin.type === PluginType.Transformer &&
+      plugin.onInit &&
+      plugin.supportedEngines?.includes(EngineType.Html || "all")
     ) {
-      plugin.initialize({ selectors })
+      plugin.onInit({ selectors })
     }
   })
 
   let data = await processData(url, { selectors, request, plugins })
 
   plugins?.forEach((plugin) => {
-    if (plugin.postProcess) {
-      data = plugin.postProcess(data)
+    if (plugin.onPostProcess) {
+      data = plugin.onPostProcess(data)
     }
   })
 

@@ -1,6 +1,11 @@
 import { LaunchOptions } from "puppeteer"
 import { JSDOM } from "jsdom"
-import { TScrapedDataPromise, IScrapeSpaOptions } from "../../types"
+import {
+  TScrapedDataPromise,
+  IScrapeSpaOptions,
+  EngineType,
+  PluginType,
+} from "../../types"
 import fetchSpa from "../../utils/request/spa"
 import extractData from "../../utils/extract/html"
 
@@ -13,8 +18,8 @@ const processData = async (
   let html = await fetchSpa(url, request as LaunchOptions)
 
   plugins?.forEach((plugin) => {
-    if (plugin.preProcess) {
-      html = plugin.preProcess(html)
+    if (plugin.onPreProcess) {
+      html = plugin.onPreProcess(html)
     }
   })
 
@@ -29,19 +34,19 @@ const scrapeSpa = async (
 ): TScrapedDataPromise => {
   plugins?.forEach((plugin) => {
     if (
-      plugin.pluginType === "transformer" &&
-      plugin.initialize &&
-      plugin?.supportedEngines?.includes("spa")
+      plugin.type === PluginType.Transformer &&
+      plugin.onInit &&
+      plugin?.supportedEngines?.includes(EngineType.Spa || "all")
     ) {
-      plugin.initialize({ selectors })
+      plugin.onInit({ selectors })
     }
   })
 
   let data = await processData(url, { selectors, request, plugins })
 
   plugins?.forEach((plugin) => {
-    if (plugin.postProcess) {
-      data = plugin.postProcess(data)
+    if (plugin.onPostProcess) {
+      data = plugin.onPostProcess(data)
     }
   })
 

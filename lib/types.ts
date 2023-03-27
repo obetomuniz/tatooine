@@ -8,7 +8,7 @@ export enum EngineType {
   Xml = "xml",
 }
 
-export type EngineTypes = "html" | "spa" | "json" | "xml"
+export type TEngineTypes = "html" | "spa" | "json" | "xml"
 
 export type TScrapedData = Record<string, any>
 
@@ -45,15 +45,15 @@ export interface IScrapeXmlOptions {
   plugins?: ITransformerPlugin[]
 }
 
-export type IScrapeDefaultOptions = IScrapeHtmlOptions &
+export type TScrapeDefaultOptions = IScrapeHtmlOptions &
   IScrapeSpaOptions &
   IScrapeJsonOptions &
   IScrapeXmlOptions
 
 export interface IScrapeOptions {
   url: string
-  engine: EngineType | EngineTypes
-  options: IScrapeDefaultOptions
+  engine: EngineType | TEngineTypes
+  options: TScrapeDefaultOptions
 }
 
 export enum PluginType {
@@ -64,17 +64,24 @@ export enum PluginType {
 export type PluginTypes = "transformer" | "engine"
 
 export interface IPlugin {
-  pluginType: string
+  type: string
 }
+
+export type TPluginEngine = string
+
+export type TPluginSupportedEngines =
+  | EngineType
+  | TEngineTypes
+  | TPluginEngine
+  | "all"
 export interface ITransformerPlugin extends IPlugin {
-  meta?: any
-  supportedEngines?: string[]
-  preProcess?: (html: string) => string
-  postProcess?: (data: TScrapedData) => TScrapedData
-  initialize?: (options: { selectors: TSelectors }) => void
+  supportedEngines?: TPluginSupportedEngines[]
+  onInit?: (options: { selectors: TSelectors }) => void
+  onPreProcess?: (data: string) => string
+  onPostProcess?: (data: TScrapedData) => TScrapedData
 }
 
 export interface IEnginePlugin extends IPlugin {
-  engine: string
-  scrape: (url: string, options: IScrapeDefaultOptions) => Promise<TScrapedData>
+  engine: TPluginEngine
+  scrape: (url: string, options: TScrapeDefaultOptions) => Promise<TScrapedData>
 }

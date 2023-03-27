@@ -3,11 +3,11 @@ import { ConditionPluginType } from "./types"
 import { applyConditions } from "./conditions"
 
 const plugin = (conditions: ConditionPluginType): ITransformerPlugin => ({
-  supportedEngines: ["html", "json", "xml", "spa"],
+  type: "transformer",
 
-  pluginType: "transformer",
+  supportedEngines: ["all"],
 
-  postProcess(data: TScrapedData) {
+  onPostProcess(data: TScrapedData): TScrapedData {
     const newData: TScrapedData = {}
 
     for (const [key, value] of Object.entries(data)) {
