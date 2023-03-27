@@ -2,11 +2,12 @@
 
 ### [3.1.1](https://github.com/obetomuniz/tatooine/compare/3.1.0...3.1.1) (2023-03-27)
 
-
 ### Features
 
-* **docs:** Add docs/plugins/TRANSFORMER.md to doc Transformer Plugins. Move engine docs to live under docs/engines folder. ([71787de](https://github.com/obetomuniz/tatooine/commit/71787dee9d0f4fd7354a261560a490e726d039b3))
-* **plugins:** Move all engines to live as an Plugin Engine. Add Engine Plugins docs. ([cdbacc7](https://github.com/obetomuniz/tatooine/commit/cdbacc769818c90934190b5ff97ef163bda21dc7))
+- **docs:** Add docs/plugins/TRANSFORMER.md to doc Transformer Plugins. ([71787de](https://github.com/obetomuniz/tatooine/commit/71787dee9d0f4fd7354a261560a490e726d039b3))
+- **docs:** Move engine docs to live under docs/engines folder. ([71787de](https://github.com/obetomuniz/tatooine/commit/71787dee9d0f4fd7354a261560a490e726d039b3))
+- **plugins:** Move all engines to live as an Plugin Engine. ([cdbacc7](https://github.com/obetomuniz/tatooine/commit/cdbacc769818c90934190b5ff97ef163bda21dc7))
+- **plugins:** Add Engine Plugins docs. ([cdbacc7](https://github.com/obetomuniz/tatooine/commit/cdbacc769818c90934190b5ff97ef163bda21dc7))
 
 ## [3.1.0](https://github.com/obetomuniz/tatooine/compare/3.0.5...3.1.0) (2023-03-27)
 
