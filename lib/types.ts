@@ -10,34 +10,13 @@ export enum EngineType {
 
 export type EngineTypes = "html" | "spa" | "json" | "xml"
 
-export enum OperationType {
-  Difference = "difference",
-  Equal = "equal",
-  Contains = "contains",
-  Regex = "regex",
-}
-
-export type OperationTypes = "difference" | "equal" | "contains" | "regex"
-
-export type OperatorFn = (a: string, b: string, sensitive: boolean) => boolean
-
-export type Operators = {
-  [key: string]: OperatorFn
-}
-
 export type TScrapedData = Record<string, any>
 
 export type TScrapedDataPromise = Promise<TScrapedData>
 
-export interface Condition {
-  value: string
-  operation: EngineType | OperationTypes
-  sensitive?: boolean
-}
 export interface ISelector {
   selector: string
   attribute?: string
-  conditions?: Condition[]
 }
 
 export type TSelectors = Record<string, ISelector>
@@ -45,28 +24,57 @@ export type TSelectors = Record<string, ISelector>
 export interface IScrapeHtmlOptions {
   selectors: TSelectors
   request?: AxiosRequestConfig
+  plugins?: ITransformerPlugin[]
 }
 
 export interface IScrapeSpaOptions {
   selectors: TSelectors
   request?: LaunchOptions
+  plugins?: ITransformerPlugin[]
 }
 
 export interface IScrapeJsonOptions {
   selectors: TSelectors
   request?: AxiosRequestConfig
+  plugins?: ITransformerPlugin[]
 }
 
 export interface IScrapeXmlOptions {
   selectors: TSelectors
   request?: AxiosRequestConfig
+  plugins?: ITransformerPlugin[]
 }
+
+export type IScrapeDefaultOptions = IScrapeHtmlOptions &
+  IScrapeSpaOptions &
+  IScrapeJsonOptions &
+  IScrapeXmlOptions
 
 export interface IScrapeOptions {
   url: string
   engine: EngineType | EngineTypes
-  options: IScrapeHtmlOptions &
-    IScrapeSpaOptions &
-    IScrapeJsonOptions &
-    IScrapeXmlOptions
+  options: IScrapeDefaultOptions
+}
+
+export enum PluginType {
+  Transformer = "transformer",
+  Engine = "engine",
+}
+
+export type PluginTypes = "transformer" | "engine"
+
+export interface IPlugin {
+  pluginType: string
+}
+export interface ITransformerPlugin extends IPlugin {
+  meta?: any
+  supportedEngines?: string[]
+  preProcess?: (html: string) => string
+  postProcess?: (data: TScrapedData) => TScrapedData
+  initialize?: (options: { selectors: TSelectors }) => void
+}
+
+export interface IEnginePlugin extends IPlugin {
+  engine: string
+  scrape: (url: string, options: IScrapeDefaultOptions) => Promise<TScrapedData>
 }

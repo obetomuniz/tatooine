@@ -1,4 +1,4 @@
-import { OperatorFn, Operators } from "../../types"
+import { OperatorFn, Operators } from "./types"
 
 const operators: Operators = {
   difference: (a: string, b: string, sensitive: boolean) =>
@@ -12,7 +12,7 @@ const operators: Operators = {
 }
 
 export const applyConditions = (value: string, conditions: any[]): boolean => {
-  return conditions.some((condition) => {
+  return conditions.every((condition) => {
     const operation: OperatorFn | undefined = operators[condition.operation]
     return operation
       ? operation(value, condition.value, condition.sensitive || false)

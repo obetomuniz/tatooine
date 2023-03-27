@@ -5,9 +5,17 @@ import fetchHttp from "../../utils/request/http"
 import extractData from "../../utils/extract/xml"
 
 const processData = async (
-  xml: string,
-  { selectors }: IScrapeXmlOptions
+  url: string,
+  { selectors, request, plugins }: IScrapeXmlOptions
 ): TScrapedDataPromise => {
+  let xml = await fetchHttp(url, request)
+
+  plugins?.forEach((plugin) => {
+    if (plugin.preProcess) {
+      xml = plugin.preProcess(xml)
+    }
+  })
+
   const dom = new JSDOM(xml, { contentType: "text/xml" })
   const document = dom.window.document
   return extractData(document, selectors)
@@ -15,10 +23,25 @@ const processData = async (
 
 const scrapeXml = async (
   url: string,
-  { selectors, request }: IScrapeXmlOptions
+  { selectors, request, plugins }: IScrapeXmlOptions
 ): TScrapedDataPromise => {
-  const xml = await fetchHttp(url, request as AxiosRequestConfig)
-  const data = await processData(xml, { selectors })
+  plugins?.forEach((plugin) => {
+    if (
+      plugin.pluginType === "transformer" &&
+      plugin.initialize &&
+      plugin?.supportedEngines?.includes("xml")
+    ) {
+      plugin.initialize({ selectors })
+    }
+  })
+
+  let data = await processData(url, { selectors, request, plugins })
+
+  plugins?.forEach((plugin) => {
+    if (plugin.postProcess) {
+      data = plugin.postProcess(data)
+    }
+  })
 
   return data
 }

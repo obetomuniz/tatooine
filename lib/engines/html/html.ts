@@ -8,9 +8,16 @@ const processData = async (
   url: string,
   options: IScrapeHtmlOptions
 ): TScrapedDataPromise => {
-  const { selectors, request } = options
+  const { selectors, request, plugins } = options
 
-  const html = await fetchHttp(url, request as AxiosRequestConfig)
+  let html = await fetchHttp(url, request as AxiosRequestConfig)
+
+  plugins?.forEach((plugin) => {
+    if (plugin.preProcess) {
+      html = plugin.preProcess(html)
+    }
+  })
+
   const dom = new JSDOM(html)
   const document = dom.window.document
   return extractData(document, selectors)
@@ -18,9 +25,26 @@ const processData = async (
 
 const scrapeHtml = async (
   url: string,
-  { selectors, request }: IScrapeHtmlOptions
+  { selectors, request, plugins }: IScrapeHtmlOptions
 ): TScrapedDataPromise => {
-  const data = await processData(url, { selectors, request })
+  plugins?.forEach((plugin) => {
+    if (
+      plugin.pluginType === "transformer" &&
+      plugin.initialize &&
+      plugin.supportedEngines?.includes("html")
+    ) {
+      plugin.initialize({ selectors })
+    }
+  })
+
+  let data = await processData(url, { selectors, request, plugins })
+
+  plugins?.forEach((plugin) => {
+    if (plugin.postProcess) {
+      data = plugin.postProcess(data)
+    }
+  })
+
   return data
 }
 

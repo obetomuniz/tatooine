@@ -1,14 +1,9 @@
 import get from "lodash.get"
 import { TScrapedData, TSelectors } from "../../types"
-import { applyConditions } from "../tools/condition"
 
 const getSelectorValue = (value: any, selector: any): any => {
   if (typeof value !== "string") {
     value = JSON.stringify(value)
-  }
-
-  if (selector.conditions && !applyConditions(value, selector.conditions)) {
-    return null
   }
 
   return value
